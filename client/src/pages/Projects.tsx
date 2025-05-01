@@ -92,10 +92,18 @@ export default function Projects() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
-              <div className="h-48 bg-dark-200 dark:bg-dark-700 relative">
-                <div className="absolute inset-0 flex items-center justify-center bg-dark-800/50 text-white">
-                  <i className="fas fa-laptop-code text-4xl"></i>
-                </div>
+              <div className="h-48 bg-dark-200 dark:bg-dark-700 relative overflow-hidden">
+                {project.id === 'ebuild' ? (
+                  <img 
+                    src="/projects/ebuild/clients.jpg"
+                    alt={project.title}
+                    className="w-full h-full object-cover object-top"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center bg-dark-800/50 text-white">
+                    <i className="fas fa-laptop-code text-4xl"></i>
+                  </div>
+                )}
               </div>
               <div className="p-6">
                 <div className="text-xs font-medium text-primary mb-1">{project.type}</div>

@@ -55,13 +55,13 @@ const projectsData: Record<string, ProjectDetails> = {
       "HTML5/CSS3"
     ],
     screenshots: [
-      { url: "/projects/ebuild/login.jpg", caption: "User authentication interface" },
-      { url: "/projects/ebuild/clients.jpg", caption: "Client management dashboard" },
-      { url: "/projects/ebuild/add-client.jpg", caption: "Client creation form" },
-      { url: "/projects/ebuild/projects.jpg", caption: "Project listing with filtering" },
-      { url: "/projects/ebuild/add-project.jpg", caption: "Project creation wizard" },
-      { url: "/projects/ebuild/tasks.jpg", caption: "Task management interface" },
-      { url: "/projects/ebuild/quotation.jpg", caption: "Quotation generation system" },
+      { url: "/projects/ebuild/login.jpg", caption: "User login interface with illustration and social authentication options" },
+      { url: "/projects/ebuild/clients.jpg", caption: "Client management dashboard with filters and status indicators" },
+      { url: "/projects/ebuild/add-client.jpg", caption: "Client registration form with contact details and validation" },
+      { url: "/projects/ebuild/projects.jpg", caption: "Project listing with detailed descriptions and status tracking" },
+      { url: "/projects/ebuild/add-project.jpg", caption: "Project creation wizard with step-by-step process" },
+      { url: "/projects/ebuild/tasks.jpg", caption: "Task management interface with priority indicators" },
+      { url: "/projects/ebuild/quotation.jpg", caption: "Quotation generation system with tax calculation" },
     ],
     outcome: "The application significantly improved eBuild's project workflow, reducing administrative time by approximately 40% and improving client communication through the organized tracking system. I gained extensive experience with Angular development, frontend-backend integration, and business process implementation."
   },
@@ -266,8 +266,12 @@ export default function ProjectDetail() {
                 {project.screenshots.length > 0 ? (
                   project.screenshots.map((screenshot, i) => (
                     <div key={i} className="rounded-xl overflow-hidden bg-dark-100 dark:bg-dark-800 shadow-md">
-                      <div className="h-48 bg-dark-200 dark:bg-dark-700 flex items-center justify-center">
-                        <i className="fas fa-image text-4xl text-dark-400 dark:text-dark-500"></i>
+                      <div className="h-48 bg-dark-200 dark:bg-dark-700 overflow-hidden">
+                        <img 
+                          src={screenshot.url} 
+                          alt={screenshot.caption}
+                          className="w-full h-full object-cover object-top"
+                        />
                       </div>
                       <div className="p-4">
                         <p className="text-dark-600 dark:text-dark-300 text-sm">{screenshot.caption}</p>
