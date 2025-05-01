@@ -1,0 +1,29 @@
+{
+  "name": "portfolio-github-pages",
+  "version": "1.0.0",
+  "description": "Fedi Abdelkebir's Portfolio - GitHub Pages Version",
+  "scripts": {
+    "start": "npx serve -s ."
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "wouter": "^2.11.0",
+    "framer-motion": "^10.16.4"
+  },
+  "devDependencies": {
+    "serve": "^14.2.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
