@@ -1,0 +1,96 @@
+ ./export-for-github.sh
+Building the React app...
+
+> rest-express@1.0.0 build
+> vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+
+'vite' is not recognized as an internal or external command,
+operable program or batch file.
+Copying files to ./github-pages-export...
+warning: in the working copy of '404.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'CNAME', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'gh-pages.js', LF will be replaced by CRLF the next time Git touches it
+[master (root-commit) c5819ac] Initial commit for GitHub Pages
+ 68 files changed, 45 insertions(+)
+ create mode 100644 404.html
+ create mode 100644 CNAME
+ create mode 100644 _redirects
+ create mode 100644 gh-pages.js
+ create mode 100644 profile.png
+ create mode 100644 projects/ebuild/add-client.jpg
+ create mode 100644 projects/ebuild/add-project.jpg
+ create mode 100644 projects/ebuild/clients.jpg
+ create mode 100644 projects/ebuild/login.jpg
+ create mode 100644 projects/ebuild/projects.jpg
+ create mode 100644 projects/ebuild/quotation.jpg
+ create mode 100644 projects/ebuild/tasks.jpg
+ create mode 100644 projects/el-khima/email.jpg
+ create mode 100644 projects/el-khima/events.jpg
+ create mode 100644 projects/el-khima/home.jpg
+ create mode 100644 projects/el-khima/shop.jpg
+ create mode 100644 projects/el-khima/sport.jpg
+ create mode 100644 projects/el-khima/workshop.jpg
+ create mode 100644 projects/ncc/add-structure.jpg
+ create mode 100644 projects/ncc/article-management.jpg
+ create mode 100644 projects/ncc/external-orders.jpg
+ create mode 100644 projects/ncc/internal-orders.jpg
+ create mode 100644 projects/ncc/invoice-pdf.jpg
+ create mode 100644 projects/ncc/login.jpg
+ create mode 100644 projects/ncc/logo.jpg
+ create mode 100644 projects/ncc/user-management.jpg
+ create mode 100644 projects/neocortex/assign-badges.jpg
+ create mode 100644 projects/neocortex/badges.jpg
+ create mode 100644 projects/neocortex/create-post.jpg
+ create mode 100644 projects/neocortex/customize-platform.jpg
+ create mode 100644 projects/neocortex/inject-data.jpg
+ create mode 100644 projects/neocortex/login.jpg
+ create mode 100644 projects/neocortex/product.jpg
+ create mode 100644 projects/neocortex/timeline.jpg
+ create mode 100644 projects/neocortex/user-profile.jpg
+ create mode 100644 projects/siv/add-animal.jpg
+ create mode 100644 projects/siv/add-calf.jpg
+ create mode 100644 projects/siv/add-task.jpg
+ create mode 100644 projects/siv/dashboard.jpg
+ create mode 100644 projects/siv/farmer-list.jpg
+ create mode 100644 projects/siv/login-farm.jpg
+ create mode 100644 projects/siv/login.jpg
+ create mode 100644 projects/siv/logo.jpg
+ create mode 100644 projects/siv/product-form.jpg
+ create mode 100644 projects/siv/product-list.jpg
+ create mode 100644 projects/siv/task-list.jpg
+ create mode 100644 projects/siv/user-management.jpg
+ create mode 100644 projects/sports-league/admin-dashboard.jpg
+ create mode 100644 projects/sports-league/admin-terrain.jpg
+ create mode 100644 projects/sports-league/admin-users.jpg
+ create mode 100644 projects/sports-league/chat.jpg
+ create mode 100644 projects/sports-league/games.jpg
+ create mode 100644 projects/sports-league/homepage.jpg
+ create mode 100644 projects/sports-league/login.jpg
+ create mode 100644 projects/sports-league/profile.jpg
+ create mode 100644 projects/sports-league/registration.jpg
+ create mode 100644 projects/sports-league/team-management.jpg
+ create mode 100644 projects/sports-league/teams.jpg
+ create mode 100644 projects/sports-league/tournaments.jpg
+ create mode 100644 projects/workmood/add-event.jpg
+ create mode 100644 projects/workmood/admin-badges.jpg
+ create mode 100644 projects/workmood/admin-complaints.jpg
+ create mode 100644 projects/workmood/admin-dashboard.jpg
+ create mode 100644 projects/workmood/events-list.jpg
+ create mode 100644 projects/workmood/home.jpg
+ create mode 100644 projects/workmood/logo.jpg
+ create mode 100644 projects/workmood/newsfeed.jpg
+ create mode 100644 projects/workmood/statistics.jpg
+
+===================================================
+Build for GitHub Pages completed!
+===================================================
+Files are ready in: ./github-pages-export
+
+To deploy to GitHub Pages:
+1. Create a repository on GitHub named: username.github.io
+2. Run these commands:
+   cd ./github-pages-export
+   git remote add origin https://github.com/username/username.github.io.git
+   git push -u origin main
+
+3. Configure GitHub Pages in your repository settings

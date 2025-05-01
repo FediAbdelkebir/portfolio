@@ -6,11 +6,22 @@ mkdir -p "$GITHUB_TMP"
 
 # Run the build command
 echo "Building the React app..."
-npm run build
+# Use npx to ensure we're using the local vite installation
+npx vite build --mode production
 
-# Copy the built files from dist/public to the temporary directory
+# Copy the built files from dist to the temporary directory
 echo "Copying files to $GITHUB_TMP..."
-cp -r ./dist/public/* "$GITHUB_TMP"/
+mkdir -p "$GITHUB_TMP"
+# Check if dist/public exists
+if [ -d "./dist/public" ]; then
+  cp -r ./dist/public/* "$GITHUB_TMP"/
+# If not, try dist
+elif [ -d "./dist" ]; then
+  cp -r ./dist/* "$GITHUB_TMP"/
+else
+  echo "Error: Build directory not found!"
+  exit 1
+fi
 
 # Copy public directory files (they're needed for GitHub Pages)
 echo "Copying public files..."
