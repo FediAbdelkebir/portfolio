@@ -290,6 +290,55 @@ const projectsData: Record<string, ProjectDetails> = {
     ],
     outcome: "The stock management application was successfully implemented at the National Computer Center, resulting in improved inventory accuracy, reduced stockouts, and enhanced decision-making through data-driven insights. This project strengthened my skills in building enterprise-level applications with Angular and Spring Boot, as well as database design and optimization."
   },
+  "neocortex": {
+    id: "neocortex",
+    title: "Enterprise Social Network SAAS Platform",
+    company: "Neocortex Technologies",
+    period: "FEBRUARY 2023 - AUGUST 2023",
+    type: "End of Studies Internship",
+    description: [
+      "Developed a comprehensive Enterprise Social Network (ESN) SAAS platform during my end-of-studies internship at Neocortex Technologies, inspired by modern social media but tailored for corporate use.",
+      "The platform combines social networking features with productivity tools, enabling employees to connect, share information, recognize achievements through badges, and customize their workspace environment.",
+      "As the lead developer, I was involved in all aspects of the application development lifecycle, from initial design to deployment, working with a microservices architecture for optimal scalability and maintenance."
+    ],
+    challenge: "The main challenge was creating a secure, scalable enterprise social platform that balanced social interaction with professional productivity. We needed to implement strict data isolation between tenants while allowing for deep customization of each instance. Another significant challenge was building a platform that supported both content personalization and enterprise-wide communication tools.",
+    solution: "Implemented a robust solution using Angular 15 for the frontend, with Quarkus-based microservices for the backend and Keycloak for identity management. We used a modular architecture that allowed for tenant-specific customizations without compromising the core platform functionality. The timeline feature was built with real-time updates using Kafka, while the achievement system (badges) was designed with gamification principles to encourage positive workplace behaviors.",
+    features: [
+      "Customizable platform branding and appearance",
+      "Social timeline with multi-media post creation",
+      "Achievement system with assignable badges",
+      "Detailed user profiles with professional information",
+      "Organization data import tools",
+      "Product and service marketplace",
+      "Real-time notifications and updates",
+      "Comprehensive admin dashboard with analytics",
+      "Mobile-responsive design for cross-device usage"
+    ],
+    technologies: [
+      "Angular 15",
+      "TypeScript",
+      "Microservices Architecture",
+      "Quarkus",
+      "Java",
+      "Keycloak",
+      "Kafka",
+      "PostgreSQL",
+      "Docker",
+      "Kubernetes"
+    ],
+    screenshots: [
+      { url: "/projects/neocortex/login.jpg", caption: "Branded login screen with customizable messaging" },
+      { url: "/projects/neocortex/timeline.jpg", caption: "Social timeline with personal weather widget and post creation" },
+      { url: "/projects/neocortex/create-post.jpg", caption: "Multi-image post creation with people tagging" },
+      { url: "/projects/neocortex/user-profile.jpg", caption: "Detailed user profile with professional information and activity feed" },
+      { url: "/projects/neocortex/badges.jpg", caption: "Achievement badge system with success confirmation" },
+      { url: "/projects/neocortex/assign-badges.jpg", caption: "Interface for assigning badges to employees" },
+      { url: "/projects/neocortex/product.jpg", caption: "Product creation form for internal marketplace" },
+      { url: "/projects/neocortex/customize-platform.jpg", caption: "Platform customization tools for branding and logos" },
+      { url: "/projects/neocortex/inject-data.jpg", caption: "Data import tool for organizational information" }
+    ],
+    outcome: "The Enterprise Social Network platform was successfully deployed to multiple corporate clients, significantly improving internal communication and employee engagement. The achievement system became particularly popular, with companies reporting increased participation in corporate initiatives tied to badge rewards. The platform's customization capabilities allowed each client to create a unique digital workspace that reflected their brand and culture, while the underlying architecture ensured consistent performance and security across all deployments."
+  },
   // Add more projects as needed
 };
 

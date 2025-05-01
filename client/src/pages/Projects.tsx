@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
+import { useState, useMemo } from "react";
 
 interface Project {
   id: string;
@@ -13,6 +14,54 @@ interface Project {
 }
 
 export default function Projects() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [technologyFilter, setTechnologyFilter] = useState('all');
+  const [sortOrder, setSortOrder] = useState('newest');
+  
+  // Extract all unique technologies from projects
+  const allTechnologies = useMemo(() => {
+    const techSet = new Set<string>();
+    projects.forEach(project => {
+      project.technologies.forEach(tech => {
+        techSet.add(tech);
+      });
+    });
+    return ['all', ...Array.from(techSet).sort()];
+  }, []);
+  
+  // Sort and filter projects
+  const filteredAndSortedProjects = useMemo(() => {
+    return projects
+      .filter(project => {
+        // Filter by search query
+        const matchesSearch = searchQuery === '' || 
+          project.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+          project.company.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          project.shortDescription.toLowerCase().includes(searchQuery.toLowerCase());
+        
+        // Filter by technology
+        const matchesTech = technologyFilter === 'all' || 
+          project.technologies.includes(technologyFilter);
+        
+        return matchesSearch && matchesTech;
+      })
+      .sort((a, b) => {
+        // Convert period strings to dates (assuming format "MONTH YEAR - MONTH YEAR" or "MONTH YEAR - Present")
+        const getEndDate = (period: string) => {
+          if (period.includes('Present')) return new Date();
+          const endPart = period.split(' - ')[1];
+          return new Date(endPart);
+        };
+        
+        const dateA = getEndDate(a.period);
+        const dateB = getEndDate(b.period);
+        
+        return sortOrder === 'newest' ? 
+          dateB.getTime() - dateA.getTime() : 
+          dateA.getTime() - dateB.getTime();
+      });
+  }, [searchQuery, technologyFilter, sortOrder]);
+  
   const projects: Project[] = [
     {
       id: "workmood",
@@ -156,6 +205,12 @@ export default function Projects() {
                 ) : project.id === 'national-computer-center' ? (
                   <img 
                     src="/projects/ncc/user-management.jpg"
+                    alt={project.title}
+                    className="w-full h-full object-cover object-top"
+                  />
+                ) : project.id === 'neocortex' ? (
+                  <img 
+                    src="/projects/neocortex/timeline.jpg"
                     alt={project.title}
                     className="w-full h-full object-cover object-top"
                   />
