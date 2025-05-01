@@ -22,6 +22,16 @@ export default function Header() {
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
+    // Check if we're on the home page
+    const isHomePage = window.location.pathname === '/' || window.location.pathname === '';
+    
+    if (!isHomePage) {
+      // Navigate to home page first and then scroll
+      window.location.href = `/#${id}`;
+      return;
+    }
+    
+    // If already on home page, just scroll
     const element = document.getElementById(id);
     if (element) {
       const offsetTop = element.offsetTop - 80;
@@ -43,11 +53,11 @@ export default function Header() {
       : "bg-transparent"
     }`}>
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <a href="#" className="text-2xl font-bold font-heading text-primary flex items-center gap-2">
+        <Link href="/" className="text-2xl font-bold font-heading text-primary flex items-center gap-2">
           <span className="text-sm font-normal hidden md:inline-block text-dark-600 dark:text-dark-300">&lt;</span>
           <span>Fedi Abdelkebir</span>
           <span className="text-sm font-normal hidden md:inline-block text-dark-600 dark:text-dark-300">/&gt;</span>
-        </a>
+        </Link>
 
         <div className="hidden md:flex items-center space-x-8">
           <nav>
