@@ -191,8 +191,7 @@ export default function Projects() {
               <select
                 value={technologyFilter}
                 onChange={(e) => setTechnologyFilter(e.target.value)}
-                className="w-full py-2 px-4 bg-gray-50 dark:bg-dark-700 border border-gray-200 dark:border-dark-600 rounded-lg text-dark-800 dark:text-dark-100 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none appearance-none transition-colors"
-                style={{ backgroundImage: "url('data:image/svg+xml;charset=US-ASCII,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22currentColor%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><polyline points=%226 9 12 15 18 9%22></polyline></svg>')" }}
+                className="w-full py-2 px-4 bg-gray-50 dark:bg-dark-700 border border-gray-200 dark:border-dark-600 rounded-lg text-dark-800 dark:text-dark-100 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-colors"
               >
                 {allTechnologies.map((tech: string) => (
                   <option key={tech} value={tech}>
@@ -207,8 +206,7 @@ export default function Projects() {
               <select
                 value={sortOrder}
                 onChange={(e) => setSortOrder(e.target.value)}
-                className="w-full py-2 px-4 bg-gray-50 dark:bg-dark-700 border border-gray-200 dark:border-dark-600 rounded-lg text-dark-800 dark:text-dark-100 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none appearance-none transition-colors"
-                style={{ backgroundImage: "url('data:image/svg+xml;charset=US-ASCII,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22currentColor%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><polyline points=%226 9 12 15 18 9%22></polyline></svg>')" }}
+                className="w-full py-2 px-4 bg-gray-50 dark:bg-dark-700 border border-gray-200 dark:border-dark-600 rounded-lg text-dark-800 dark:text-dark-100 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-colors"
               >
                 <option value="newest">Newest First</option>
                 <option value="oldest">Oldest First</option>
