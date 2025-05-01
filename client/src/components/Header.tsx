@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "./ThemeProvider";
+import { Link } from "wouter";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -54,6 +55,7 @@ export default function Header() {
               <li><a href="#home" onClick={(e) => handleNavClick(e, 'home')} className="text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">Home</a></li>
               <li><a href="#about" onClick={(e) => handleNavClick(e, 'about')} className="text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">About</a></li>
               <li><a href="#experience" onClick={(e) => handleNavClick(e, 'experience')} className="text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">Experience</a></li>
+              <li><Link href="/projects" className="text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">Projects</Link></li>
               <li><a href="#skills" onClick={(e) => handleNavClick(e, 'skills')} className="text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">Skills</a></li>
               <li><a href="#education" onClick={(e) => handleNavClick(e, 'education')} className="text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">Education</a></li>
               <li><a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">Contact</a></li>
@@ -93,6 +95,7 @@ export default function Header() {
             <li><a href="#home" onClick={(e) => handleNavClick(e, 'home')} className="block py-2 text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">Home</a></li>
             <li><a href="#about" onClick={(e) => handleNavClick(e, 'about')} className="block py-2 text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">About</a></li>
             <li><a href="#experience" onClick={(e) => handleNavClick(e, 'experience')} className="block py-2 text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">Experience</a></li>
+            <li><a href="/projects" className="block py-2 text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">Projects</a></li>
             <li><a href="#skills" onClick={(e) => handleNavClick(e, 'skills')} className="block py-2 text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">Skills</a></li>
             <li><a href="#education" onClick={(e) => handleNavClick(e, 'education')} className="block py-2 text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">Education</a></li>
             <li><a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="block py-2 text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">Contact</a></li>
