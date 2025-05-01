@@ -9,12 +9,15 @@ import Projects from "@/pages/Projects";
 import ProjectDetail from "@/pages/ProjectDetail";
 
 function Router() {
+  // Add base path for GitHub Pages
+  const base = import.meta.env.MODE === 'production' ? '/portfolio' : '';
+  
   return (
     <Layout>
       <Switch>
-        <Route path="/" component={Home} />
-        <Route path="/projects" component={Projects} />
-        <Route path="/projects/:id" component={ProjectDetail} />
+        <Route path={`${base}/`} component={Home} />
+        <Route path={`${base}/projects`} component={Projects} />
+        <Route path={`${base}/projects/:id`} component={ProjectDetail} />
         <Route component={NotFound} />
       </Switch>
     </Layout>

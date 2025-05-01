@@ -50,12 +50,14 @@ export default function Header() {
   // Handle navigation between sections
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
+    // Get base path for GitHub Pages
+    const base = import.meta.env.MODE === 'production' ? '/portfolio' : '';
     // Check if we're on the home page
-    const isHomePage = window.location.pathname === '/' || window.location.pathname === '';
+    const isHomePage = window.location.pathname === base + '/' || window.location.pathname === base || window.location.pathname.endsWith('/portfolio/');
     
     if (!isHomePage) {
       // Use router to navigate to home, then scroll
-      setLocation('/');
+      setLocation(`${base}/`);
       scrollToSection(id);
     } else {
       // Already on home page, just scroll
@@ -75,7 +77,7 @@ export default function Header() {
       : "bg-transparent"
     }`}>
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold font-heading text-primary flex items-center gap-2">
+        <Link href={import.meta.env.MODE === 'production' ? '/portfolio/' : '/'} className="text-2xl font-bold font-heading text-primary flex items-center gap-2">
           <span className="text-sm font-normal hidden md:inline-block text-dark-600 dark:text-dark-300">&lt;</span>
           <span>Fedi Abdelkebir</span>
           <span className="text-sm font-normal hidden md:inline-block text-dark-600 dark:text-dark-300">/&gt;</span>
@@ -87,7 +89,7 @@ export default function Header() {
               <li><a href="#home" onClick={(e) => handleNavClick(e, 'home')} className="text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">Home</a></li>
               <li><a href="#about" onClick={(e) => handleNavClick(e, 'about')} className="text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">About</a></li>
               <li><a href="#experience" onClick={(e) => handleNavClick(e, 'experience')} className="text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">Experience</a></li>
-              <li><Link href="/projects" className="text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">Projects</Link></li>
+              <li><Link href={import.meta.env.MODE === 'production' ? '/portfolio/projects' : '/projects'} className="text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">Projects</Link></li>
               <li><a href="#skills" onClick={(e) => handleNavClick(e, 'skills')} className="text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">Skills</a></li>
               <li><a href="#education" onClick={(e) => handleNavClick(e, 'education')} className="text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">Education</a></li>
               <li><a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">Contact</a></li>
@@ -129,7 +131,7 @@ export default function Header() {
             <li><a href="#home" onClick={(e) => handleNavClick(e, 'home')} className="block py-2 text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">Home</a></li>
             <li><a href="#about" onClick={(e) => handleNavClick(e, 'about')} className="block py-2 text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">About</a></li>
             <li><a href="#experience" onClick={(e) => handleNavClick(e, 'experience')} className="block py-2 text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">Experience</a></li>
-            <li><Link href="/projects" className="block py-2 text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">Projects</Link></li>
+            <li><Link href={import.meta.env.MODE === 'production' ? '/portfolio/projects' : '/projects'} className="block py-2 text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">Projects</Link></li>
             <li><a href="#skills" onClick={(e) => handleNavClick(e, 'skills')} className="block py-2 text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">Skills</a></li>
             <li><a href="#education" onClick={(e) => handleNavClick(e, 'education')} className="block py-2 text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">Education</a></li>
             <li><a href="#contact" onClick={(e) => handleNavClick(e, 'contact')} className="block py-2 text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">Contact</a></li>
