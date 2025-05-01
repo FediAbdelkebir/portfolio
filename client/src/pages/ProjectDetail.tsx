@@ -67,39 +67,50 @@ const projectsData: Record<string, ProjectDetails> = {
   },
   "interactive-virtuelle": {
     id: "interactive-virtuelle",
-    title: "Management Web Application",
+    title: "SIV - Farm Management System",
     company: "Interactive Virtuelle",
     period: "JULY 2021 - SEPTEMBER 2021",
-    type: "Full Stack MERN Intern",
+    type: "Full Stack MERN Internship",
     description: [
-      "During my internship at Interactive Virtuelle, I worked as a full stack developer on a management web application using the MERN stack (MongoDB, Express.js, React.js, and Node.js).",
-      "The project focused on creating an efficient management system for internal company resources and client interactions."
+      "During my internship at Interactive Virtuelle, I designed and developed a specialized farm management system called SIV (Solutions Interactives Virtuelles) using the MERN stack (MongoDB, Express.js, React.js, Node.js).",
+      "The application provides comprehensive functionality for managing farms, including animal tracking, task management, farmer administration, and product inventory management."
     ],
-    challenge: "The primary challenge was building a full-stack application that could handle various data types and relationships while maintaining performance and providing a responsive user interface.",
-    solution: "I implemented a MERN stack architecture with RESTful API endpoints, MongoDB for flexible document storage, and React for building a dynamic and responsive frontend interface.",
+    challenge: "The main challenge was developing a complex system with multiple interconnected modules that needed to track various types of farm entities (animals, farmers, tasks, products) while maintaining data integrity across the platform. The system needed to accommodate different user roles with specific access permissions while providing a user-friendly interface for farm administrators.",
+    solution: "I implemented a modular solution using React.js for a responsive frontend with intuitive dashboards and forms, Node.js with Express for a robust API backend, and MongoDB for flexible document storage. The application featured detailed animal records with lineage tracking, task management with point systems, and comprehensive reporting through visual analytics.",
     features: [
-      "User authentication and role-based access control",
-      "Dashboard with performance metrics and activity tracking",
-      "Resource management system",
-      "Client information portal",
-      "Real-time notifications",
-      "Data visualization with charts and graphs"
+      "Cattle and calf management with detailed record keeping",
+      "Farmer registration and profile management",
+      "Task tracking system with point allocation",
+      "Dashboard with visual statistics and farm analytics",
+      "Product inventory and stock management",
+      "User management with role-based access control",
+      "Responsive design for both desktop and mobile use"
     ],
     technologies: [
       "MongoDB",
       "Express.js",
       "React.js",
       "Node.js",
-      "JavaScript/ES6",
-      "REST API",
-      "HTML5/CSS3",
-      "Bootstrap"
+      "JWT Authentication",
+      "Bootstrap",
+      "Chart.js",
+      "RESTful API"
     ],
     screenshots: [
-      { url: "/projects/iv/dashboard.jpg", caption: "Main dashboard interface" },
-      { url: "/projects/iv/resource-management.jpg", caption: "Resource management view" }
+      { url: "/projects/siv/dashboard.jpg", caption: "Dashboard with farm statistics and analytics" },
+      { url: "/projects/siv/task-list.jpg", caption: "Task management interface with status tracking" },
+      { url: "/projects/siv/add-task.jpg", caption: "Task creation form with point allocation" },
+      { url: "/projects/siv/add-animal.jpg", caption: "Detailed animal registration form" },
+      { url: "/projects/siv/add-calf.jpg", caption: "Calf registration with lineage tracking" },
+      { url: "/projects/siv/user-management.jpg", caption: "User management system" },
+      { url: "/projects/siv/farmer-list.jpg", caption: "Farmer listing with search functionality" },
+      { url: "/projects/siv/login.jpg", caption: "Login screen with logo" },
+      { url: "/projects/siv/login-farm.jpg", caption: "Themed login screen with farm illustration" },
+      { url: "/projects/siv/product-list.jpg", caption: "Product inventory management" },
+      { url: "/projects/siv/product-form.jpg", caption: "Product creation and editing form" },
+      { url: "/projects/siv/logo.jpg", caption: "SIV logo and branding" }
     ],
-    outcome: "The completed application streamlined internal management processes at Interactive Virtuelle, reducing manual data entry and improving visibility across departments. Through this project, I gained valuable experience with the full MERN stack, particularly in designing and implementing MongoDB schemas and creating responsive React components."
+    outcome: "The SIV farm management system successfully streamlined operations for agricultural businesses, providing them with a centralized platform for tracking animals, managing tasks, and monitoring farm productivity. The application's intuitive interface and comprehensive feature set significantly reduced manual record-keeping and improved data visibility across all aspects of farm management. Through this project, I gained valuable experience with the full MERN stack, particularly in designing complex data models and building interconnected system modules."
   },
   "sports-league": {
     id: "sports-league",
@@ -295,38 +306,83 @@ export default function ProjectDetail() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="bg-white dark:bg-dark-800 rounded-xl shadow-md p-6 mb-8">
-              <h2 className="text-xl font-bold mb-4 text-dark-800 dark:text-white">Project Overview</h2>
-              {project.description.map((paragraph, i) => (
-                <p key={i} className="text-dark-600 dark:text-dark-300 mb-4">{paragraph}</p>
-              ))}
-            </div>
-
-            <div className="bg-white dark:bg-dark-800 rounded-xl shadow-md p-6 mb-8">
-              <h2 className="text-xl font-bold mb-4 text-dark-800 dark:text-white">The Challenge</h2>
-              <p className="text-dark-600 dark:text-dark-300">{project.challenge}</p>
-            </div>
-
-            <div className="bg-white dark:bg-dark-800 rounded-xl shadow-md p-6 mb-8">
-              <h2 className="text-xl font-bold mb-4 text-dark-800 dark:text-white">Solution & Approach</h2>
-              <p className="text-dark-600 dark:text-dark-300">{project.solution}</p>
-            </div>
-
-            <div className="bg-white dark:bg-dark-800 rounded-xl shadow-md p-6 mb-8">
-              <h2 className="text-xl font-bold mb-4 text-dark-800 dark:text-white">Key Features</h2>
-              <ul className="space-y-2">
-                {project.features.map((feature, i) => (
-                  <li key={i} className="flex items-start">
-                    <span className="text-primary mr-2"><i className="fas fa-check-circle mt-1"></i></span>
-                    <span className="text-dark-600 dark:text-dark-300">{feature}</span>
-                  </li>
+            {/* Project overview with icon and gradient border */}
+            <div className="bg-white dark:bg-dark-800 rounded-xl shadow-md p-6 mb-8 border-l-4 border-primary relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-bl-full z-0"></div>
+              <div className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-primary/20 text-primary z-10">
+                <i className="fas fa-project-diagram text-lg"></i>
+              </div>
+              <div className="relative z-10">
+                <h2 className="text-xl font-bold mb-4 text-dark-800 dark:text-white flex items-center gap-2">
+                  Project Overview
+                </h2>
+                {project.description.map((paragraph, i) => (
+                  <p key={i} className="text-dark-600 dark:text-dark-300 mb-4">{paragraph}</p>
                 ))}
-              </ul>
+              </div>
             </div>
 
-            <div className="bg-white dark:bg-dark-800 rounded-xl shadow-md p-6">
-              <h2 className="text-xl font-bold mb-4 text-dark-800 dark:text-white">Outcome & Learnings</h2>
-              <p className="text-dark-600 dark:text-dark-300">{project.outcome}</p>
+            {/* The challenge with icon and gradient border */}
+            <div className="bg-white dark:bg-dark-800 rounded-xl shadow-md p-6 mb-8 border-l-4 border-amber-500 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-amber-500/10 rounded-bl-full z-0"></div>
+              <div className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-amber-500/20 text-amber-500 z-10">
+                <i className="fas fa-mountain text-lg"></i>
+              </div>
+              <div className="relative z-10">
+                <h2 className="text-xl font-bold mb-4 text-dark-800 dark:text-white flex items-center gap-2">
+                  The Challenge
+                </h2>
+                <p className="text-dark-600 dark:text-dark-300">{project.challenge}</p>
+              </div>
+            </div>
+
+            {/* Solution with icon and gradient border */}
+            <div className="bg-white dark:bg-dark-800 rounded-xl shadow-md p-6 mb-8 border-l-4 border-green-500 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-green-500/10 rounded-bl-full z-0"></div>
+              <div className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-green-500/20 text-green-500 z-10">
+                <i className="fas fa-lightbulb text-lg"></i>
+              </div>
+              <div className="relative z-10">
+                <h2 className="text-xl font-bold mb-4 text-dark-800 dark:text-white flex items-center gap-2">
+                  Solution & Approach
+                </h2>
+                <p className="text-dark-600 dark:text-dark-300">{project.solution}</p>
+              </div>
+            </div>
+
+            {/* Features with icon and gradient border */}
+            <div className="bg-white dark:bg-dark-800 rounded-xl shadow-md p-6 mb-8 border-l-4 border-blue-500 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/10 rounded-bl-full z-0"></div>
+              <div className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-blue-500/20 text-blue-500 z-10">
+                <i className="fas fa-list-check text-lg"></i>
+              </div>
+              <div className="relative z-10">
+                <h2 className="text-xl font-bold mb-4 text-dark-800 dark:text-white flex items-center gap-2">
+                  Key Features
+                </h2>
+                <ul className="space-y-2">
+                  {project.features.map((feature, i) => (
+                    <li key={i} className="flex items-start">
+                      <span className="text-primary mr-2"><i className="fas fa-check-circle mt-1"></i></span>
+                      <span className="text-dark-600 dark:text-dark-300">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Outcome with icon and gradient border */}
+            <div className="bg-white dark:bg-dark-800 rounded-xl shadow-md p-6 border-l-4 border-purple-500 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-purple-500/10 rounded-bl-full z-0"></div>
+              <div className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-purple-500/20 text-purple-500 z-10">
+                <i className="fas fa-chart-line text-lg"></i>
+              </div>
+              <div className="relative z-10">
+                <h2 className="text-xl font-bold mb-4 text-dark-800 dark:text-white flex items-center gap-2">
+                  Outcome & Learnings
+                </h2>
+                <p className="text-dark-600 dark:text-dark-300">{project.outcome}</p>
+              </div>
             </div>
           </motion.div>
 
@@ -336,15 +392,23 @@ export default function ProjectDetail() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <div className="bg-white dark:bg-dark-800 rounded-xl shadow-md p-6 mb-8">
-              <h2 className="text-xl font-bold mb-4 text-dark-800 dark:text-white">Technologies Used</h2>
-              <div className="grid grid-cols-2 gap-4">
-                {project.technologies.map((tech, i) => (
-                  <div key={i} className="flex items-center">
-                    <span className="text-primary mr-2"><i className="fas fa-code"></i></span>
-                    <span className="text-dark-600 dark:text-dark-300">{tech}</span>
-                  </div>
-                ))}
+            <div className="bg-white dark:bg-dark-800 rounded-xl shadow-md p-6 mb-8 border-l-4 border-indigo-500 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-20 h-20 bg-indigo-500/10 rounded-bl-full z-0"></div>
+              <div className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-indigo-500/20 text-indigo-500 z-10">
+                <i className="fas fa-laptop-code text-lg"></i>
+              </div>
+              <div className="relative z-10">
+                <h2 className="text-xl font-bold mb-4 text-dark-800 dark:text-white">Technologies Used</h2>
+                <div className="grid grid-cols-2 gap-4">
+                  {project.technologies.map((tech, i) => (
+                    <div key={i} className="flex items-center p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-dark-700 transition-colors">
+                      <span className="w-8 h-8 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-500 mr-3">
+                        <i className="fas fa-code"></i>
+                      </span>
+                      <span className="text-dark-600 dark:text-dark-300">{tech}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </motion.div>
