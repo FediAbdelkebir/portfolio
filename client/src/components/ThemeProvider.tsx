@@ -33,19 +33,35 @@ export function ThemeProvider({
   useEffect(() => {
     const root = window.document.documentElement;
     
-    root.classList.remove("light", "dark");
-    
-    if (theme === "system") {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches
-        ? "dark"
-        : "light";
+    // Apply the stored theme immediately on mount to avoid flicker
+    const applyTheme = (newTheme: Theme) => {
+      root.classList.remove("light", "dark");
       
-      root.classList.add(systemTheme);
-      return;
-    }
+      if (newTheme === "system") {
+        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+          .matches
+          ? "dark"
+          : "light";
+        
+        root.classList.add(systemTheme);
+      } else {
+        root.classList.add(newTheme);
+      }
+    };
     
-    root.classList.add(theme);
+    // Apply theme on mount and when it changes
+    applyTheme(theme);
+    
+    // Listen for system preference changes
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleChange = () => {
+      if (theme === "system") {
+        applyTheme("system");
+      }
+    };
+    
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
   }, [theme]);
 
   const value = {

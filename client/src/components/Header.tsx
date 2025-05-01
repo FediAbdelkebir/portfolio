@@ -91,9 +91,9 @@ export default function Header() {
             aria-label="Toggle theme"
           >
             {theme === 'dark' ? (
-              <i className="fas fa-moon"></i>
+              <i className="fas fa-sun text-yellow-400"></i>
             ) : (
-              <i className="fas fa-sun"></i>
+              <i className="fas fa-moon text-gray-600"></i>
             )}
           </button>
         </div>
@@ -130,9 +130,9 @@ export default function Header() {
               >
                 <span>Toggle Theme</span>
                 {theme === 'dark' ? (
-                  <i className="fas fa-moon"></i>
+                  <i className="fas fa-sun text-yellow-400"></i>
                 ) : (
-                  <i className="fas fa-sun"></i>
+                  <i className="fas fa-moon text-gray-600"></i>
                 )}
               </button>
             </li>
