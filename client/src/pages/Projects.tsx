@@ -46,13 +46,13 @@ export default function Projects() {
     },
     {
       id: "interactive-virtuelle",
-      title: "Management Web Application",
+      title: "SIV - Farm Management System",
       company: "Interactive Virtuelle",
       period: "JULY 2021 - SEPTEMBER 2021",
       type: "Full Stack MERN Internship",
-      shortDescription: "A comprehensive management web application built with the MERN stack.",
-      technologies: ["MongoDB", "ExpressJS", "ReactJS", "NodeJS"],
-      thumbnail: "/projects/iv/thumbnail.jpg"
+      shortDescription: "A specialized farm management system with animal tracking, task management, and analytical dashboards.",
+      technologies: ["MongoDB", "Express.js", "React.js", "Node.js", "Chart.js"],
+      thumbnail: "/projects/siv/dashboard.jpg"
     },
     {
       id: "national-computer-center",
@@ -128,6 +128,12 @@ export default function Projects() {
                 ) : project.id === 'sports-league' ? (
                   <img 
                     src="/projects/sports-league/homepage.jpg"
+                    alt={project.title}
+                    className="w-full h-full object-cover object-top"
+                  />
+                ) : project.id === 'interactive-virtuelle' ? (
+                  <img 
+                    src="/projects/siv/dashboard.jpg"
                     alt={project.title}
                     className="w-full h-full object-cover object-top"
                   />
