@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "./ThemeProvider";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+  const [, setLocation] = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,27 +21,40 @@ export default function Header() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  // Function to handle scroll after navigation with increasing retries
+  const scrollToSection = (id: string, attempt = 1) => {
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (element) {
+        const offsetTop = element.offsetTop - 80;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: "smooth",
+        });
+      } else if (attempt < 5) {
+        // If element not found yet and we haven't tried too many times
+        // try again with exponential backoff
+        scrollToSection(id, attempt + 1);
+      }
+    }, attempt * 100); // Increasing delay on each attempt
+  };
+
+  // Handle navigation between sections
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
     // Check if we're on the home page
     const isHomePage = window.location.pathname === '/' || window.location.pathname === '';
     
     if (!isHomePage) {
-      // Navigate to home page first and then scroll
-      window.location.href = `/#${id}`;
-      return;
+      // Use router to navigate to home, then scroll
+      setLocation('/');
+      scrollToSection(id);
+    } else {
+      // Already on home page, just scroll
+      scrollToSection(id);
     }
     
-    // If already on home page, just scroll
-    const element = document.getElementById(id);
-    if (element) {
-      const offsetTop = element.offsetTop - 80;
-      window.scrollTo({
-        top: offsetTop,
-        behavior: "smooth",
-      });
-      setIsMobileMenuOpen(false);
-    }
+    setIsMobileMenuOpen(false);
   };
 
   const toggleTheme = () => {
