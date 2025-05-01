@@ -232,8 +232,14 @@ const projectsData: Record<string, ProjectDetails> = {
       "Maven"
     ],
     screenshots: [
-      { url: "/projects/ncc/dashboard.jpg", caption: "Inventory dashboard" },
-      { url: "/projects/ncc/stock-listing.jpg", caption: "Stock listing interface" }
+      { url: "/projects/ncc/logo.jpg", caption: "CNI - National Computer Center Logo" },
+      { url: "/projects/ncc/login.jpg", caption: "User authentication screen with modern design" },
+      { url: "/projects/ncc/user-management.jpg", caption: "User management interface with role-based access" },
+      { url: "/projects/ncc/article-management.jpg", caption: "Article management with search and filtering" },
+      { url: "/projects/ncc/add-structure.jpg", caption: "Structure management interface" },
+      { url: "/projects/ncc/internal-orders.jpg", caption: "Internal order management with approval flow" },
+      { url: "/projects/ncc/external-orders.jpg", caption: "External order tracking system" },
+      { url: "/projects/ncc/invoice-pdf.jpg", caption: "PDF invoice generation with digital signature" }
     ],
     outcome: "The stock management application was successfully implemented at the National Computer Center, resulting in improved inventory accuracy, reduced stockouts, and enhanced decision-making through data-driven insights. This project strengthened my skills in building enterprise-level applications with Angular and Spring Boot, as well as database design and optimization."
   },

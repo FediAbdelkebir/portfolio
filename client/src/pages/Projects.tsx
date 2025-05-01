@@ -137,6 +137,12 @@ export default function Projects() {
                     alt={project.title}
                     className="w-full h-full object-cover object-top"
                   />
+                ) : project.id === 'national-computer-center' ? (
+                  <img 
+                    src="/projects/ncc/user-management.jpg"
+                    alt={project.title}
+                    className="w-full h-full object-cover object-top"
+                  />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center bg-dark-800/50 text-white">
                     <i className="fas fa-laptop-code text-4xl"></i>
