@@ -1,0 +1,114 @@
+name: Deploy React App to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  # Manual trigger from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Add base path for GitHub Pages
+        run: |
+          # Create a temporary file
+          cat << EOF > temp_vite_config.js
+          import { defineConfig } from "vite";
+          import react from "@vitejs/plugin-react";
+          import path from "path";
+          import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
+
+          // Add base path for GitHub Pages
+          export default defineConfig({
+            plugins: [
+              react(),
+              runtimeErrorOverlay(),
+            ],
+            resolve: {
+              alias: {
+                "@db": path.resolve(import.meta.dirname, "db"),
+                "@": path.resolve(import.meta.dirname, "client", "src"),
+                "@shared": path.resolve(import.meta.dirname, "shared"),
+                "@assets": path.resolve(import.meta.dirname, "attached_assets"),
+              },
+            },
+            root: path.resolve(import.meta.dirname, "client"),
+            build: {
+              outDir: path.resolve(import.meta.dirname, "dist/public"),
+              emptyOutDir: true,
+            },
+            base: "/PortfolioProdigy/",  // Replace with your repository name
+          });
+          EOF
+          mv temp_vite_config.js vite.config.ts
+
+      - name: Add SPA redirect script for GitHub Pages
+        run: |
+          # Create 404.html for SPA routing
+          cat << EOF > client/public/404.html
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <meta charset="utf-8">
+            <title>Redirecting...</title>
+            <script>
+              sessionStorage.redirect = location.href;
+            </script>
+            <meta http-equiv="refresh" content="0;URL='/PortfolioProdigy/'">
+          </head>
+          <body>
+            <h1>Redirecting...</h1>
+            <p>If you are not redirected automatically, click <a href="/PortfolioProdigy/">here</a>.</p>
+          </body>
+          </html>
+          EOF
+
+          # Add redirect handling script to index.html
+          sed -i 's|</head>|<script>\n(function() {\n  var redirect = sessionStorage.redirect;\n  delete sessionStorage.redirect;\n  if (redirect && redirect !== location.href) {\n    history.replaceState(null, null, redirect.replace("/PortfolioProdigy/", "/"));\n  }\n})();\n</script>\n</head>|' client/public/index.html
+
+      - name: Build client-side only
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: './dist/public'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
