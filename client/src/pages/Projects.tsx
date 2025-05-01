@@ -13,6 +13,90 @@ interface Project {
   thumbnail: string;
 }
 
+// Project data
+const projectsData: Project[] = [
+  {
+    id: "workmood",
+    title: "WorkMood - Employee Well-being Platform",
+    company: "WorkMood",
+    period: "OCTOBER 2021 - MARCH 2022",
+    type: "Full Stack Development",
+    shortDescription: "An employee well-being platform that enhances workplace relationships, facilitates anonymous feedback, and gamifies engagement.",
+    technologies: ["Angular", "Spring Boot", "PostgreSQL", "Chart.js", "Bootstrap"],
+    thumbnail: "/projects/workmood/events-list.jpg"
+  },
+  {
+    id: "ebuild",
+    title: "Multi Management Web Application",
+    company: "eBuild",
+    period: "JULY 2022 - SEPTEMBER 2022",
+    type: "Frontend Internship",
+    shortDescription: "A modern project/client management system with task tracking, invoicing, and quotation capabilities.",
+    technologies: ["Laravel", "Angular 12", "MySQL"],
+    thumbnail: "/projects/ebuild/thumbnail.jpg"
+  },
+  {
+    id: "sports-league",
+    title: "Sports League Platform",
+    company: "Ebuild",
+    period: "OCTOBER 2022 - DECEMBER 2022",
+    type: "Full Stack Web Development",
+    shortDescription: "A modern digital platform for connecting athletes, organizing sports events, and managing tournaments.",
+    technologies: ["Vue.js", "Laravel", "MySQL", "WebSockets"],
+    thumbnail: "/projects/sports-league/homepage.jpg"
+  },
+  {
+    id: "el-khima",
+    title: "Camping & Outdoor Events Platform",
+    company: "El Khima",
+    period: "JANUARY 2023 - APRIL 2023",
+    type: "Full Stack Web Development",
+    shortDescription: "A platform for camping and outdoor events with e-commerce, event management, and workshop features.",
+    technologies: ["HTML5/CSS3", "JavaScript", "PHP", "MySQL", "Bootstrap"],
+    thumbnail: "/projects/el-khima/home.jpg"
+  },
+  {
+    id: "interactive-virtuelle",
+    title: "SIV - Farm Management System",
+    company: "Interactive Virtuelle",
+    period: "JULY 2021 - SEPTEMBER 2021",
+    type: "Full Stack MERN Internship",
+    shortDescription: "A specialized farm management system with animal tracking, task management, and analytical dashboards.",
+    technologies: ["MongoDB", "Express.js", "React.js", "Node.js", "Chart.js"],
+    thumbnail: "/projects/siv/dashboard.jpg"
+  },
+  {
+    id: "national-computer-center",
+    title: "Stock Management Web Application",
+    company: "National Computer Center",
+    period: "JANUARY 2020 - JUNE 2020",
+    type: "End-of-study Project Internship",
+    shortDescription: "An inventory management system for tracking stock levels and product information.",
+    technologies: ["Angular 8", "SpringBoot", "PostgreSQL"],
+    thumbnail: "/projects/ncc/thumbnail.jpg"
+  },
+  {
+    id: "neocortex",
+    title: "Enterprise Social Network SAAS Platform",
+    company: "Neocortex Technologies",
+    period: "FEBRUARY 2023 - AUGUST 2023",
+    type: "End of Studies Internship",
+    shortDescription: "A comprehensive social networking platform tailored for corporate environments with customizable branding and gamification features.",
+    technologies: ["Angular 15", "Microservices", "Quarkus", "Keycloak", "Kafka"],
+    thumbnail: "/projects/neocortex/timeline.jpg"
+  },
+  {
+    id: "tessi",
+    title: "Smart-Control Application",
+    company: "Tessi",
+    period: "FEBRUARY 2023 - Present",
+    type: "Fullstack Software Engineer",
+    shortDescription: "An advanced application to combat identity fraud using document control and verification.",
+    technologies: ["Angular", "TypeScript", "Spring Boot", "RabbitMQ", "Elasticsearch"],
+    thumbnail: "/projects/tessi/thumbnail.jpg"
+  }
+];
+
 export default function Projects() {
   const [searchQuery, setSearchQuery] = useState('');
   const [technologyFilter, setTechnologyFilter] = useState('all');
@@ -21,7 +105,7 @@ export default function Projects() {
   // Extract all unique technologies from projects
   const allTechnologies = useMemo(() => {
     const techSet = new Set<string>();
-    projects.forEach(project => {
+    projectsData.forEach(project => {
       project.technologies.forEach(tech => {
         techSet.add(tech);
       });
@@ -30,9 +114,9 @@ export default function Projects() {
   }, []);
   
   // Sort and filter projects
-  const filteredAndSortedProjects = useMemo(() => {
-    return projects
-      .filter(project => {
+  const filteredProjects = useMemo(() => {
+    return projectsData
+      .filter((project: Project) => {
         // Filter by search query
         const matchesSearch = searchQuery === '' || 
           project.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
@@ -45,7 +129,7 @@ export default function Projects() {
         
         return matchesSearch && matchesTech;
       })
-      .sort((a, b) => {
+      .sort((a: Project, b: Project) => {
         // Convert period strings to dates (assuming format "MONTH YEAR - MONTH YEAR" or "MONTH YEAR - Present")
         const getEndDate = (period: string) => {
           if (period.includes('Present')) return new Date();
@@ -61,95 +145,12 @@ export default function Projects() {
           dateA.getTime() - dateB.getTime();
       });
   }, [searchQuery, technologyFilter, sortOrder]);
-  
-  const projects: Project[] = [
-    {
-      id: "workmood",
-      title: "WorkMood - Employee Well-being Platform",
-      company: "WorkMood",
-      period: "OCTOBER 2021 - MARCH 2022",
-      type: "Full Stack Development",
-      shortDescription: "An employee well-being platform that enhances workplace relationships, facilitates anonymous feedback, and gamifies engagement.",
-      technologies: ["Angular", "Spring Boot", "PostgreSQL", "Chart.js", "Bootstrap"],
-      thumbnail: "/projects/workmood/events-list.jpg"
-    },
-    {
-      id: "ebuild",
-      title: "Multi Management Web Application",
-      company: "eBuild",
-      period: "JULY 2022 - SEPTEMBER 2022",
-      type: "Frontend Internship",
-      shortDescription: "A modern project/client management system with task tracking, invoicing, and quotation capabilities.",
-      technologies: ["Laravel", "Angular 12", "MySQL"],
-      thumbnail: "/projects/ebuild/thumbnail.jpg"
-    },
-    {
-      id: "sports-league",
-      title: "Sports League Platform",
-      company: "Ebuild",
-      period: "OCTOBER 2022 - DECEMBER 2022",
-      type: "Full Stack Web Development",
-      shortDescription: "A modern digital platform for connecting athletes, organizing sports events, and managing tournaments.",
-      technologies: ["Vue.js", "Laravel", "MySQL", "WebSockets"],
-      thumbnail: "/projects/sports-league/homepage.jpg"
-    },
-    {
-      id: "el-khima",
-      title: "Camping & Outdoor Events Platform",
-      company: "El Khima",
-      period: "JANUARY 2023 - APRIL 2023",
-      type: "Full Stack Web Development",
-      shortDescription: "A platform for camping and outdoor events with e-commerce, event management, and workshop features.",
-      technologies: ["HTML5/CSS3", "JavaScript", "PHP", "MySQL", "Bootstrap"],
-      thumbnail: "/projects/el-khima/home.jpg"
-    },
-    {
-      id: "interactive-virtuelle",
-      title: "SIV - Farm Management System",
-      company: "Interactive Virtuelle",
-      period: "JULY 2021 - SEPTEMBER 2021",
-      type: "Full Stack MERN Internship",
-      shortDescription: "A specialized farm management system with animal tracking, task management, and analytical dashboards.",
-      technologies: ["MongoDB", "Express.js", "React.js", "Node.js", "Chart.js"],
-      thumbnail: "/projects/siv/dashboard.jpg"
-    },
-    {
-      id: "national-computer-center",
-      title: "Stock Management Web Application",
-      company: "National Computer Center",
-      period: "JANUARY 2020 - JUNE 2020",
-      type: "End-of-study Project Internship",
-      shortDescription: "An inventory management system for tracking stock levels and product information.",
-      technologies: ["Angular 8", "SpringBoot", "PostgreSQL"],
-      thumbnail: "/projects/ncc/thumbnail.jpg"
-    },
-    {
-      id: "neocortex",
-      title: "SAAS Application",
-      company: "Neocortex Technologies",
-      period: "FEBRUARY 2023 - AUGUST 2023",
-      type: "End of Studies Internship",
-      shortDescription: "A sophisticated SAAS application built with modern technologies and microservices architecture.",
-      technologies: ["Angular 15", "Microservices", "Quarkus", "Keycloak", "Kafka"],
-      thumbnail: "/projects/neocortex/thumbnail.jpg"
-    },
-    {
-      id: "tessi",
-      title: "Smart-Control Application",
-      company: "Tessi",
-      period: "FEBRUARY 2023 - Present",
-      type: "Fullstack Software Engineer",
-      shortDescription: "An advanced application to combat identity fraud using document control and verification.",
-      technologies: ["Angular", "TypeScript", "Spring Boot", "RabbitMQ", "Elasticsearch"],
-      thumbnail: "/projects/tessi/thumbnail.jpg"
-    }
-  ];
 
   return (
     <section className="py-16 md:py-24">
       <div className="container mx-auto px-4">
         <motion.div 
-          className="max-w-3xl mx-auto text-center mb-12"
+          className="max-w-3xl mx-auto text-center mb-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -161,8 +162,68 @@ export default function Projects() {
           </p>
         </motion.div>
 
+        {/* Filter controls */}
+        <motion.div
+          className="mb-10 p-6 bg-white dark:bg-dark-800 rounded-xl shadow-md"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+            {/* Search input */}
+            <div className="w-full md:w-1/3">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search projects..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full py-2 pl-10 pr-4 bg-gray-50 dark:bg-dark-700 border border-gray-200 dark:border-dark-600 rounded-lg text-dark-800 dark:text-dark-100 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-colors"
+                />
+                <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-dark-400">
+                  <i className="fas fa-search"></i>
+                </div>
+              </div>
+            </div>
+
+            {/* Filter by technology */}
+            <div className="w-full md:w-1/3">
+              <select
+                value={technologyFilter}
+                onChange={(e) => setTechnologyFilter(e.target.value)}
+                className="w-full py-2 px-4 bg-gray-50 dark:bg-dark-700 border border-gray-200 dark:border-dark-600 rounded-lg text-dark-800 dark:text-dark-100 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none appearance-none transition-colors"
+                style={{ backgroundImage: "url('data:image/svg+xml;charset=US-ASCII,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22currentColor%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><polyline points=%226 9 12 15 18 9%22></polyline></svg>')" }}
+              >
+                {allTechnologies.map((tech: string) => (
+                  <option key={tech} value={tech}>
+                    {tech === 'all' ? 'All Technologies' : tech}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Sort by date */}
+            <div className="w-full md:w-1/3">
+              <select
+                value={sortOrder}
+                onChange={(e) => setSortOrder(e.target.value)}
+                className="w-full py-2 px-4 bg-gray-50 dark:bg-dark-700 border border-gray-200 dark:border-dark-600 rounded-lg text-dark-800 dark:text-dark-100 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none appearance-none transition-colors"
+                style={{ backgroundImage: "url('data:image/svg+xml;charset=US-ASCII,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22currentColor%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><polyline points=%226 9 12 15 18 9%22></polyline></svg>')" }}
+              >
+                <option value="newest">Newest First</option>
+                <option value="oldest">Oldest First</option>
+              </select>
+            </div>
+          </div>
+          
+          {/* Project count */}
+          <div className="mt-4 text-sm text-dark-500 dark:text-dark-400">
+            Showing {filteredProjects.length} of {projectsData.length} projects
+          </div>
+        </motion.div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+          {filteredProjects.map((project: Project, index: number) => (
             <motion.div
               key={project.id}
               className="bg-white dark:bg-dark-800 rounded-xl shadow-md overflow-hidden"
@@ -227,7 +288,7 @@ export default function Projects() {
                 <p className="text-dark-600 dark:text-dark-300 text-sm mb-4">{project.shortDescription}</p>
                 
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech, i) => (
+                  {project.technologies.map((tech: string, i: number) => (
                     <span 
                       key={i}
                       className="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-primary rounded text-xs"
