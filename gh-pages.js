@@ -1,14 +1,19 @@
-/* GitHub Pages SPA Redirect Script */
-// This script handles routing for single page applications on GitHub Pages
-// It takes the current url and redirects to the index.html with proper routing
+// This script handles redirects for GitHub Pages SPA routing
+// It should be included in your index.html
 
 (function() {
-  // Detect if this is a redirect from a 404 page
-  var redirect = sessionStorage.redirect;
-  delete sessionStorage.redirect;
-  
-  // If we have a redirect value, use it
-  if (redirect && redirect !== location.href) {
-    history.replaceState(null, null, redirect);
+  // Only run this script on production (GitHub Pages)
+  if (window.location.hostname.includes('github.io')) {
+    // Check if we have a redirect in the query string
+    var redirect = window.location.search.match(/redirect=([^&]*)/);
+    
+    if (redirect && redirect[1]) {
+      // Get the path to redirect to
+      var path = decodeURIComponent(redirect[1]);
+      
+      // Remove the redirect parameter from the URL
+      // This is a client-side redirect, so we use history API
+      window.history.replaceState(null, null, path);
+    }
   }
 })();
