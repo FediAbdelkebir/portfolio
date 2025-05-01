@@ -10,6 +10,7 @@ REPO_NAME="PortfolioProdigy"  # Repository name
 mkdir -p .github/workflows
 
 # Create 404.html for SPA routing on GitHub Pages
+mkdir -p client/public
 cat > client/public/404.html << EOL
 <!DOCTYPE html>
 <html>
@@ -29,13 +30,13 @@ cat > client/public/404.html << EOL
 EOL
 
 # Add GitHub Pages redirect script to index.html
-if grep -q "sessionStorage.redirect" client/public/index.html; then
+if grep -q "sessionStorage.redirect" client/index.html; then
   echo "SPA redirect script already exists in index.html"
 else
   REDIRECT_SCRIPT="\n<script>\n(function() {\n  var redirect = sessionStorage.redirect;\n  delete sessionStorage.redirect;\n  if (redirect && redirect !== location.href) {\n    history.replaceState(null, null, redirect.replace(\"/${REPO_NAME}/\", \"/\"));\n  }\n})();\n</script>"
   
   # Add script before closing head tag
-  sed -i "s|</head>|${REDIRECT_SCRIPT}\n</head>|" client/public/index.html
+  sed -i "s|</head>|${REDIRECT_SCRIPT}\n</head>|" client/index.html
 fi
 
 # Print instructions for GitHub

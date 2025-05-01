@@ -68,6 +68,7 @@ jobs:
       - name: Add SPA redirect script for GitHub Pages
         run: |
           # Create 404.html for SPA routing
+          mkdir -p client/public
           cat << EOF > client/public/404.html
           <!DOCTYPE html>
           <html>
@@ -87,7 +88,7 @@ jobs:
           EOF
 
           # Add redirect handling script to index.html
-          sed -i 's|</head>|<script>\n(function() {\n  var redirect = sessionStorage.redirect;\n  delete sessionStorage.redirect;\n  if (redirect && redirect !== location.href) {\n    history.replaceState(null, null, redirect.replace("/PortfolioProdigy/", "/"));\n  }\n})();\n</script>\n</head>|' client/public/index.html
+          sed -i 's|</head>|<script>\n(function() {\n  var redirect = sessionStorage.redirect;\n  delete sessionStorage.redirect;\n  if (redirect && redirect !== location.href) {\n    history.replaceState(null, null, redirect.replace("/PortfolioProdigy/", "/"));\n  }\n})();\n</script>\n</head>|' client/index.html
 
       - name: Build client-side only
         run: npm run build
