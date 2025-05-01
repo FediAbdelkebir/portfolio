@@ -25,6 +25,16 @@ export default function Projects() {
       thumbnail: "/projects/ebuild/thumbnail.jpg"
     },
     {
+      id: "el-khima",
+      title: "Camping & Outdoor Events Platform",
+      company: "El Khima",
+      period: "JANUARY 2023 - APRIL 2023",
+      type: "Full Stack Web Development",
+      shortDescription: "A platform for camping and outdoor events with e-commerce, event management, and workshop features.",
+      technologies: ["HTML5/CSS3", "JavaScript", "PHP", "MySQL", "Bootstrap"],
+      thumbnail: "/projects/el-khima/home.jpg"
+    },
+    {
       id: "interactive-virtuelle",
       title: "Management Web Application",
       company: "Interactive Virtuelle",
@@ -96,6 +106,12 @@ export default function Projects() {
                 {project.id === 'ebuild' ? (
                   <img 
                     src="/projects/ebuild/clients.jpg"
+                    alt={project.title}
+                    className="w-full h-full object-cover object-top"
+                  />
+                ) : project.id === 'el-khima' ? (
+                  <img 
+                    src="/projects/el-khima/home.jpg"
                     alt={project.title}
                     className="w-full h-full object-cover object-top"
                   />

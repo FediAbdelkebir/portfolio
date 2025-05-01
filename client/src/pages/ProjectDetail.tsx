@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRoute, Link } from "wouter";
 import { motion } from "framer-motion";
 
@@ -101,6 +101,47 @@ const projectsData: Record<string, ProjectDetails> = {
     ],
     outcome: "The completed application streamlined internal management processes at Interactive Virtuelle, reducing manual data entry and improving visibility across departments. Through this project, I gained valuable experience with the full MERN stack, particularly in designing and implementing MongoDB schemas and creating responsive React components."
   },
+  "el-khima": {
+    id: "el-khima",
+    title: "Camping & Outdoor Events Platform",
+    company: "El Khima",
+    period: "JANUARY 2023 - APRIL 2023",
+    type: "Full Stack Web Development",
+    description: [
+      "I developed El Khima, a comprehensive platform focused on camping and outdoor events in Tunisia, designed to connect nature enthusiasts and promote eco-friendly tourism.",
+      "The platform features an event management system, e-commerce capabilities for outdoor equipment, and educational content through workshops and training sessions."
+    ],
+    challenge: "The main challenge was creating a cohesive platform that combines event management, e-commerce, and educational content while ensuring a seamless user experience across different devices and maintaining performance with media-rich content.",
+    solution: "I implemented a responsive web application using modern frontend technologies and integrated various services including payment processing, content management, and user authentication to create a comprehensive outdoor activities platform.",
+    features: [
+      "Event management system with filtering and registration",
+      "E-commerce store for camping and outdoor equipment",
+      "Workshop and training session registration",
+      "Responsive email templates and notifications",
+      "Interactive image galleries",
+      "User profiles and booking history",
+      "Integrated payment processing"
+    ],
+    technologies: [
+      "HTML5/CSS3",
+      "JavaScript",
+      "PHP",
+      "MySQL",
+      "Bootstrap",
+      "jQuery",
+      "AJAX",
+      "RESTful APIs"
+    ],
+    screenshots: [
+      { url: "/projects/el-khima/home.jpg", caption: "Homepage featuring hero section with camping imagery" },
+      { url: "/projects/el-khima/events.jpg", caption: "Events listing with filtering options and featured event cards" },
+      { url: "/projects/el-khima/shop.jpg", caption: "E-commerce section with camping equipment and supplies" },
+      { url: "/projects/el-khima/workshop.jpg", caption: "Workshop page with different training categories" },
+      { url: "/projects/el-khima/email.jpg", caption: "Email template design for notifications and marketing" },
+      { url: "/projects/el-khima/sport.jpg", caption: "Outdoor activities and sports section with gallery" }
+    ],
+    outcome: "El Khima successfully launched as Tunisia's premier camping and outdoor activities platform, attracting nature enthusiasts and promoting sustainable tourism. The platform streamlined event registration and equipment purchasing, increasing participation in outdoor activities and workshops. I gained valuable experience in creating a multi-faceted platform that combines various functionalities while maintaining a cohesive user experience."
+  },
   "national-computer-center": {
     id: "national-computer-center",
     title: "Stock Management Web Application",
@@ -145,7 +186,7 @@ export default function ProjectDetail() {
   const [, params] = useRoute("/projects/:id");
   const projectId = params?.id;
   const project = projectId ? projectsData[projectId] : null;
-
+  
   useEffect(() => {
     // Scroll to top when component mounts
     window.scrollTo(0, 0);
@@ -242,7 +283,7 @@ export default function ProjectDetail() {
             </div>
           </motion.div>
 
-          {/* Right column - Screenshots */}
+          {/* Right column - Technologies */}
           <motion.div 
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -259,34 +300,50 @@ export default function ProjectDetail() {
                 ))}
               </div>
             </div>
-
-            <div className="sticky top-24">
-              <h2 className="text-xl font-bold mb-4 text-dark-800 dark:text-white">Project Screenshots</h2>
-              <div className="space-y-4">
-                {project.screenshots.length > 0 ? (
-                  project.screenshots.map((screenshot, i) => (
-                    <div key={i} className="rounded-xl overflow-hidden bg-dark-100 dark:bg-dark-800 shadow-md">
-                      <div className="h-48 bg-dark-200 dark:bg-dark-700 overflow-hidden">
-                        <img 
-                          src={screenshot.url} 
-                          alt={screenshot.caption}
-                          className="w-full h-full object-cover object-top"
-                        />
-                      </div>
-                      <div className="p-4">
-                        <p className="text-dark-600 dark:text-dark-300 text-sm">{screenshot.caption}</p>
-                      </div>
-                    </div>
-                  ))
-                ) : (
-                  <div className="text-dark-500 dark:text-dark-400 italic">
-                    Screenshots not available
-                  </div>
-                )}
-              </div>
-            </div>
           </motion.div>
         </div>
+        
+        {/* Screenshots Section - Full Width */}
+        <motion.div
+          className="mt-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+        >
+          <h2 className="text-2xl font-bold mb-6 text-dark-800 dark:text-white">Project Screenshots</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {project.screenshots.length > 0 ? (
+              project.screenshots.map((screenshot, i) => (
+                <div 
+                  key={i} 
+                  className="rounded-xl overflow-hidden bg-dark-100 dark:bg-dark-800 shadow-md cursor-pointer transition-transform hover:scale-[1.02]"
+                  onClick={() => window.open(screenshot.url, '_blank')}
+                >
+                  <div className="h-56 overflow-hidden relative group">
+                    <img 
+                      src={screenshot.url} 
+                      alt={screenshot.caption}
+                      className="w-full h-full object-cover object-top transition-transform group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-dark-900/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                      <span className="text-white font-medium flex items-center gap-2">
+                        <i className="fas fa-search"></i> Click to Enlarge
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <p className="text-dark-600 dark:text-dark-300 text-sm">{screenshot.caption}</p>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="text-dark-500 dark:text-dark-400 italic col-span-full text-center">
+                Screenshots not available
+              </div>
+            )}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
