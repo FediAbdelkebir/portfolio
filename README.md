@@ -17,14 +17,31 @@ A modern, animated portfolio website showcasing Fedi Abdelkebir's professional j
 
 ## Deploying to GitHub Pages
 
-This project is set up for easy deployment to GitHub Pages. Follow these steps to deploy your portfolio:
+This project is set up for easy deployment to GitHub Pages. You have two options:
 
-### 1. Create a GitHub Repository
+### Option 1: Using the Export Script (Recommended)
 
-- Create a new repository on GitHub named `username.github.io` (replace `username` with your GitHub username).
-- If you want to use a different repository name, you'll need to update the `base` property in `vite.config.ts` to match your repository name.
+We've created a convenient script to prepare your portfolio for GitHub Pages:
 
-### 2. Push Your Code to GitHub
+```bash
+# Run the export script
+./export-for-github.sh
+```
+
+The script will:
+1. Build your project
+2. Collect all necessary files in a `github-pages-export` directory
+3. Initialize a git repository in that directory
+4. Provide instructions for pushing to GitHub
+
+After running the script, follow the on-screen instructions to create and push to your GitHub repository.
+
+### Option 2: Using GitHub Actions
+
+Alternatively, you can use the included GitHub workflow:
+
+1. Create a new repository on GitHub named `username.github.io` (replace `username` with your GitHub username).
+2. Push your entire project code to GitHub:
 
 ```bash
 # Initialize git repository (if not already done)
@@ -43,12 +60,11 @@ git remote add origin https://github.com/username/username.github.io.git
 git push -u origin main
 ```
 
-### 3. Configure GitHub Pages
-
-- Go to your repository settings on GitHub
-- Navigate to the "Pages" section
-- In the "Build and deployment" section, select "GitHub Actions" as the source
-- The deployment will automatically start when you push to the main branch
+3. Configure GitHub Pages
+   - Go to your repository settings on GitHub
+   - Navigate to the "Pages" section
+   - In the "Build and deployment" section, select "GitHub Actions" as the source
+   - The deployment will automatically start when you push to the main branch
 
 ### 4. Custom Domain (Optional)
 
