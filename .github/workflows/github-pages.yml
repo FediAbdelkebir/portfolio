@@ -87,8 +87,22 @@ jobs:
           </html>
           EOF
 
+          # Create redirect script
+          cat > redirect_script.js << EOF
+<script>
+(function() {
+  var redirect = sessionStorage.redirect;
+  delete sessionStorage.redirect;
+  if (redirect && redirect !== location.href) {
+    history.replaceState(null, null, redirect.replace("/PortfolioProdigy/", "/"));
+  }
+})();
+</script>
+EOF
+
           # Add redirect handling script to index.html
-          sed -i 's|</head>|<script>\n(function() {\n  var redirect = sessionStorage.redirect;\n  delete sessionStorage.redirect;\n  if (redirect && redirect !== location.href) {\n    history.replaceState(null, null, redirect.replace("/PortfolioProdigy/", "/"));\n  }\n})();\n</script>\n</head>|' client/index.html
+          sed -i "s|</head>|$(cat redirect_script.js)\n</head>|" client/index.html
+          rm redirect_script.js
 
       - name: Build client-side only
         run: npm run build

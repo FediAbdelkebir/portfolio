@@ -33,10 +33,21 @@ EOL
 if grep -q "sessionStorage.redirect" client/index.html; then
   echo "SPA redirect script already exists in index.html"
 else
-  REDIRECT_SCRIPT="\n<script>\n(function() {\n  var redirect = sessionStorage.redirect;\n  delete sessionStorage.redirect;\n  if (redirect && redirect !== location.href) {\n    history.replaceState(null, null, redirect.replace(\"/${REPO_NAME}/\", \"/\"));\n  }\n})();\n</script>"
+  cat >> temp_redirect_script.js << EOL
+<script>
+(function() {
+  var redirect = sessionStorage.redirect;
+  delete sessionStorage.redirect;
+  if (redirect && redirect !== location.href) {
+    history.replaceState(null, null, redirect.replace("/${REPO_NAME}/", "/"));
+  }
+})();
+</script>
+EOL
   
   # Add script before closing head tag
-  sed -i "s|</head>|${REDIRECT_SCRIPT}\n</head>|" client/index.html
+  sed -i "s|</head>|$(cat temp_redirect_script.js)\n</head>|" client/index.html
+  rm temp_redirect_script.js
 fi
 
 # Print instructions for GitHub
