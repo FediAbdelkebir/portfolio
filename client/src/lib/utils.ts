@@ -28,6 +28,13 @@ export function throttle(func: Function, delay: number): () => void {
   };
 }
 
+// Helper function to get correct path for GitHub Pages
+export function getGitHubPagesPath(path: string): string {
+  return import.meta.env.MODE === 'production' 
+    ? `/portfolio${path}` 
+    : path;
+}
+
 export const jobTitles = [
   'Software Architect Engineer',
   'Fullstack Developer',

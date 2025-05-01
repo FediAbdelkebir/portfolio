@@ -122,7 +122,7 @@ export default function Hero() {
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-56 h-56 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-white dark:border-dark-800 shadow-lg">
                   <img 
-                    src="/profile.png" 
+                    src={import.meta.env.MODE === 'production' ? '/portfolio/profile.png' : '/profile.png'} 
                     alt="Fedi Abdelkebir" 
                     className="w-full h-full object-cover"
                   />

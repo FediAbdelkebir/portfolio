@@ -343,9 +343,16 @@ const projectsData: Record<string, ProjectDetails> = {
 };
 
 export default function ProjectDetail() {
-  const [, params] = useRoute("/projects/:id");
+  const [, params] = useRoute(import.meta.env.MODE === 'production' ? "/portfolio/projects/:id" : "/projects/:id");
   const projectId = params?.id;
   const project = projectId ? projectsData[projectId] : null;
+  
+  // Function to get correct image path with base URL for GitHub Pages
+  const getImagePath = (path: string): string => {
+    return import.meta.env.MODE === 'production' 
+      ? `/portfolio${path}` 
+      : path;
+  };
   
   useEffect(() => {
     // Scroll to top when component mounts
@@ -357,7 +364,7 @@ export default function ProjectDetail() {
       <div className="container mx-auto px-4 py-16 text-center">
         <h2 className="text-2xl font-bold mb-4">Project Not Found</h2>
         <p className="mb-8">The project you're looking for doesn't exist or has been removed.</p>
-        <Link to="/projects" className="inline-block px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">
+        <Link to={import.meta.env.MODE === 'production' ? '/portfolio/projects' : '/projects'} className="inline-block px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">
           Back to Projects
         </Link>
       </div>
@@ -368,7 +375,7 @@ export default function ProjectDetail() {
     <section className="py-16 md:py-24">
       <div className="container mx-auto px-4">
         {/* Back button */}
-        <Link to="/projects" className="inline-flex items-center mb-8 text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">
+        <Link to={import.meta.env.MODE === 'production' ? '/portfolio/projects' : '/projects'} className="inline-flex items-center mb-8 text-dark-600 dark:text-dark-300 hover:text-primary dark:hover:text-primary transition-colors">
           <i className="fas fa-arrow-left mr-2"></i>
           Back to Projects
         </Link>
@@ -531,11 +538,11 @@ export default function ProjectDetail() {
                 <div 
                   key={i} 
                   className="rounded-xl overflow-hidden bg-dark-100 dark:bg-dark-800 shadow-md cursor-pointer transition-transform hover:scale-[1.02]"
-                  onClick={() => window.open(screenshot.url, '_blank')}
+                  onClick={() => window.open(getImagePath(screenshot.url), '_blank')}
                 >
                   <div className="h-56 overflow-hidden relative group">
                     <img 
-                      src={screenshot.url} 
+                      src={getImagePath(screenshot.url)} 
                       alt={screenshot.caption}
                       className="w-full h-full object-cover object-top transition-transform group-hover:scale-110"
                     />
