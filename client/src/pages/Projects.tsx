@@ -15,6 +15,16 @@ interface Project {
 export default function Projects() {
   const projects: Project[] = [
     {
+      id: "workmood",
+      title: "WorkMood - Employee Well-being Platform",
+      company: "WorkMood",
+      period: "OCTOBER 2021 - MARCH 2022",
+      type: "Full Stack Development",
+      shortDescription: "An employee well-being platform that enhances workplace relationships, facilitates anonymous feedback, and gamifies engagement.",
+      technologies: ["Angular", "Spring Boot", "PostgreSQL", "Chart.js", "Bootstrap"],
+      thumbnail: "/projects/workmood/events-list.jpg"
+    },
+    {
       id: "ebuild",
       title: "Multi Management Web Application",
       company: "eBuild",
@@ -113,7 +123,13 @@ export default function Projects() {
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
               <div className="h-48 bg-dark-200 dark:bg-dark-700 relative overflow-hidden">
-                {project.id === 'ebuild' ? (
+                {project.id === 'workmood' ? (
+                  <img 
+                    src="/projects/workmood/events-list.jpg"
+                    alt={project.title}
+                    className="w-full h-full object-cover object-top"
+                  />
+                ) : project.id === 'ebuild' ? (
                   <img 
                     src="/projects/ebuild/clients.jpg"
                     alt={project.title}

@@ -23,6 +23,53 @@ interface ProjectDetails {
 
 // Map of project IDs to their detailed information
 const projectsData: Record<string, ProjectDetails> = {
+  "workmood": {
+    id: "workmood",
+    title: "WorkMood - Employee Well-being Platform",
+    company: "WorkMood",
+    period: "OCTOBER 2021 - MARCH 2022",
+    type: "Full Stack Development",
+    description: [
+      "WorkMood is an innovative platform designed to enhance workplace relationships and foster a positive company culture. The application provides employees with tools to express feedback about their colleagues and workplace environment, with options for anonymous communication.",
+      "The platform integrates social features with gamification elements, allowing users to create, join, and like events, share posts, and earn points by completing challenges. These points can later be used to purchase access badges, adding a rewarding element to workplace engagement.",
+      "As the lead full-stack developer, I was responsible for implementing both the customer-facing features and the comprehensive administrative dashboard, which provides detailed analytics and management tools for all platform activities."
+    ],
+    challenge: "The primary challenge was creating a system that could facilitate honest communication while maintaining user privacy and preventing misuse. We needed to build a platform that encouraged authentic engagement while implementing measures to prevent negative workplace dynamics. Additionally, we had to design an intuitive rewards system that would motivate participation without creating unhealthy competition.",
+    solution: "We implemented a sophisticated anonymous feedback system with content moderation to ensure constructive communication. The event management system was built with a focus on inclusivity, allowing easy creation and discovery of workplace activities. For the gamification aspect, we created a balanced points system tied to positive contributions, with challenges designed to promote team building and professional growth. The administrative dashboard provides comprehensive analytics while respecting user privacy, offering management insights without compromising individual data protection.",
+    features: [
+      "Anonymous feedback system with optional identity disclosure",
+      "Event creation, joining, and social interactions (likes, comments)",
+      "Points-based reward system with challenges and badges",
+      "Social newsfeed with post sharing capabilities",
+      "Comprehensive administrative dashboard with detailed analytics",
+      "User management system with role-based access control",
+      "Reclamation and offers management",
+      "Interactive statistical visualizations for employee engagement metrics"
+    ],
+    technologies: [
+      "Angular",
+      "TypeScript",
+      "Spring Boot",
+      "Java",
+      "PostgreSQL",
+      "Chart.js",
+      "Bootstrap",
+      "RESTful APIs",
+      "JWT Authentication"
+    ],
+    screenshots: [
+      { url: "/projects/workmood/logo.jpg", caption: "WorkMood logo with emoticons representing workplace moods" },
+      { url: "/projects/workmood/home.jpg", caption: "Homepage showcasing platform services and engagement metrics" },
+      { url: "/projects/workmood/events-list.jpg", caption: "Events listing page with join/like functionality" },
+      { url: "/projects/workmood/newsfeed.jpg", caption: "Social newsfeed with article sharing and categorization" },
+      { url: "/projects/workmood/admin-dashboard.jpg", caption: "Administrative dashboard with management modules" },
+      { url: "/projects/workmood/add-event.jpg", caption: "Event creation interface with points and type settings" },
+      { url: "/projects/workmood/admin-badges.jpg", caption: "Badge management system for administrators" },
+      { url: "/projects/workmood/admin-complaints.jpg", caption: "Complaint management interface with filtering options" },
+      { url: "/projects/workmood/statistics.jpg", caption: "Statistical visualization of platform engagement metrics" }
+    ],
+    outcome: "The WorkMood platform significantly improved workplace communication and employee engagement metrics for our client company. Anonymous feedback features enabled honest communication that addressed previously unspoken concerns, while the event system increased participation in team-building activities by 48%. The gamification elements proved particularly successful, with 73% of employees actively participating in challenges and redeeming rewards. The administrative insights provided by the dashboard allowed management to identify and address engagement issues proactively, leading to measured improvements in employee satisfaction scores."
+  },
   "ebuild": {
     id: "ebuild",
     title: "Multi Management Web Application",
