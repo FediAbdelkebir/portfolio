@@ -33,6 +33,10 @@
     --ring: 160 61% 46%; /* Same as primary */
     
     --radius: 0.5rem;
+    
+    /* Custom colors */
+    --primary-100: 160 61% 90%;
+    --primary-900: 160 61% 10%;
   }
   
   .dark {
@@ -63,6 +67,10 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 160 61% 46%; /* Same as primary */
+    
+    /* Custom colors */
+    --primary-100: 160 61% 30%;
+    --primary-900: 160 61% 90%;
   }
 
   * {

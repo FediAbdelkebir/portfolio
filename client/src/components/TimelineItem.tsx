@@ -55,7 +55,7 @@ export default function TimelineItem({
             {skills.map((skill, index) => (
               <span 
                 key={index} 
-                className="px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-300 rounded-full text-sm"
+                className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-primary rounded-full text-sm"
               >
                 {skill}
               </span>
