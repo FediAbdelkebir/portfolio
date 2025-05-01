@@ -1,95 +1,80 @@
 # Fedi Abdelkebir Portfolio
 
-A modern, animated portfolio website showcasing Fedi Abdelkebir's professional journey as a Full Stack Developer, designed to highlight technical skills and project expertise through an engaging, interactive interface.
-
-## Key Technologies
-- React.js for dynamic frontend
-- GitHub Pages for hosting
-- Responsive design
-- Animated UI components
+A modern, animated portfolio website showcasing Fedi Abdelkebir's professional journey as a Full Stack Developer, designed with a focus on smooth, seamless user experience and performance.
 
 ## Features
-- Animated UI with transitions and effects
-- Project showcase with detailed project pages
-- Filterable projects by technology
-- Dark/light mode theme switch
+
+- Modern UI with animations
+- Dark/Light mode toggle
 - Responsive design for all devices
+- Project showcase with detailed project pages
+- Skills and experience timeline
+- Contact form
 
-## Deploying to GitHub Pages
+## Technologies Used
 
-This project is set up for easy deployment to GitHub Pages. You have two options:
+- React.js
+- TypeScript
+- Tailwind CSS
+- Framer Motion for animations
+- React Query
 
-### Option 1: Using the Export Script (Recommended)
+## Deployment to GitHub Pages
 
-We've created a convenient script to prepare your portfolio for GitHub Pages:
+This project is configured for easy deployment to GitHub Pages. Follow these simple steps:
+
+### Step 1: Prepare the Project
+
+Run the preparation script that removes unnecessary files and configures the project for GitHub Pages:
 
 ```bash
-# Run the export script
-./export-for-github.sh
+./prepare-for-download.sh
 ```
 
-The script will:
-1. Build your project
-2. Collect all necessary files in a `github-pages-export` directory
-3. Initialize a git repository in that directory
-4. Provide instructions for pushing to GitHub
+### Step 2: Download the Project
 
-After running the script, follow the on-screen instructions to create and push to your GitHub repository.
+Download the project from Replit after running the preparation script.
 
-### Option 2: Using GitHub Actions
+### Step 3: Create a GitHub Repository
 
-Alternatively, you can use the included GitHub workflow:
+Create a new repository on GitHub named `portfolio`.
 
-1. Create a new repository on GitHub named `username.github.io` (replace `username` with your GitHub username).
-2. Push your entire project code to GitHub:
+### Step 4: Push Your Code
 
 ```bash
-# Initialize git repository (if not already done)
 git init
-
-# Add all files
 git add .
-
-# Commit changes
-git commit -m "Initial commit"
-
-# Add remote repository
-git remote add origin https://github.com/username/username.github.io.git
-
-# Push to GitHub
+git commit -m 'Initial commit'
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/portfolio.git
 git push -u origin main
 ```
 
-3. Configure GitHub Pages
-   - Go to your repository settings on GitHub
-   - Navigate to the "Pages" section
-   - In the "Build and deployment" section, select "GitHub Actions" as the source
-   - The deployment will automatically start when you push to the main branch
+### Step 5: Enable GitHub Pages
 
-### 4. Custom Domain (Optional)
+1. Go to your repository on GitHub
+2. Click on "Settings" > "Pages"
+3. Under "Build and deployment" select "GitHub Actions"
 
-If you want to use a custom domain:
+### Step 6: View Your Deployed Site
 
-1. Update the `CNAME` file in the `client/public` directory with your domain
-2. Configure your domain's DNS settings to point to GitHub Pages
-3. In your repository's GitHub Pages settings, add your custom domain
+Your site will be deployed to: `https://YOUR_USERNAME.github.io/portfolio/`
 
-## Development
+## Local Development
+
+To run the project locally:
 
 ```bash
-# Install dependencies
 npm install
-
-# Start development server
 npm run dev
+```
 
-# Build for production
+## Building for Production
+
+```bash
 npm run build
 ```
 
-## Folder Structure
+## License
 
-- `client/`: Frontend code
-  - `src/`: React components and logic
-  - `public/`: Static files
-- `.github/workflows/`: GitHub Actions workflow for deployment
+This project is licensed under the MIT License.
