@@ -101,6 +101,53 @@ const projectsData: Record<string, ProjectDetails> = {
     ],
     outcome: "The completed application streamlined internal management processes at Interactive Virtuelle, reducing manual data entry and improving visibility across departments. Through this project, I gained valuable experience with the full MERN stack, particularly in designing and implementing MongoDB schemas and creating responsive React components."
   },
+  "sports-league": {
+    id: "sports-league",
+    title: "Sports League Platform",
+    company: "Ebuild",
+    period: "OCTOBER 2022 - DECEMBER 2022",
+    type: "Full Stack Web Development",
+    description: [
+      "I developed the Sports League platform, a modern digital solution for connecting athletes and sports enthusiasts to organize and participate in various sporting events and tournaments across Tunisia.",
+      "The platform includes user management, team formation, tournament organization, stadium reservations, and real-time chat functionalities to create a complete sports community ecosystem."
+    ],
+    challenge: "The primary challenge was to create a unified platform that could accommodate multiple sports types while managing complex relationships between users, teams, tournaments, and venues. The system needed to handle real-time interactions, scheduling, and user-generated content with a visually engaging interface.",
+    solution: "I implemented a responsive single-page application with a sleek, modern UI featuring purple and neon color schemes. The platform utilizes a robust backend to manage user relationships, team formations, tournament brackets, and venue bookings with integrated real-time messaging functionality.",
+    features: [
+      "User profiles with achievements and statistics",
+      "Team creation and management system",
+      "Tournament organization with brackets and scoring",
+      "Stadium/venue reservation system",
+      "Real-time chat and messaging",
+      "Event discovery and filtering",
+      "Admin dashboard for platform management",
+      "Social sharing and engagement features"
+    ],
+    technologies: [
+      "HTML5/CSS3",
+      "JavaScript",
+      "PHP",
+      "MySQL",
+      "Vue.js",
+      "Laravel",
+      "WebSockets",
+      "RESTful APIs"
+    ],
+    screenshots: [
+      { url: "/projects/sports-league/homepage.jpg", caption: "Homepage featuring dynamic hero section with athlete imagery" },
+      { url: "/projects/sports-league/registration.jpg", caption: "User registration form with profile image and team selection" },
+      { url: "/projects/sports-league/login.jpg", caption: "Login page with social authentication options" },
+      { url: "/projects/sports-league/profile.jpg", caption: "User profile with activity feed and achievements" },
+      { url: "/projects/sports-league/teams.jpg", caption: "Team management interface with player listings" },
+      { url: "/projects/sports-league/games.jpg", caption: "Available games and stadium booking interface" },
+      { url: "/projects/sports-league/tournaments.jpg", caption: "Tournament listings with prize information and status" },
+      { url: "/projects/sports-league/chat.jpg", caption: "Real-time messaging interface for team communication" },
+      { url: "/projects/sports-league/admin-dashboard.jpg", caption: "Administrative dashboard with platform analytics" },
+      { url: "/projects/sports-league/admin-terrain.jpg", caption: "Stadium management form for administrators" },
+      { url: "/projects/sports-league/admin-users.jpg", caption: "User management interface for administrators" }
+    ],
+    outcome: "The Sports League platform successfully launched and became a central hub for sports enthusiasts in Tunisia, facilitating thousands of matches and tournaments. The platform's intuitive interface and comprehensive feature set drastically reduced the organizational overhead of sporting events while building a vibrant community of athletes. This project strengthened my skills in full-stack development, particularly in handling complex data relationships and creating engaging user interfaces."
+  },
   "el-khima": {
     id: "el-khima",
     title: "Camping & Outdoor Events Platform",

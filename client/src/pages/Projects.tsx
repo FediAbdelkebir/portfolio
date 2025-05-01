@@ -25,6 +25,16 @@ export default function Projects() {
       thumbnail: "/projects/ebuild/thumbnail.jpg"
     },
     {
+      id: "sports-league",
+      title: "Sports League Platform",
+      company: "Ebuild",
+      period: "OCTOBER 2022 - DECEMBER 2022",
+      type: "Full Stack Web Development",
+      shortDescription: "A modern digital platform for connecting athletes, organizing sports events, and managing tournaments.",
+      technologies: ["Vue.js", "Laravel", "MySQL", "WebSockets"],
+      thumbnail: "/projects/sports-league/homepage.jpg"
+    },
+    {
       id: "el-khima",
       title: "Camping & Outdoor Events Platform",
       company: "El Khima",
@@ -112,6 +122,12 @@ export default function Projects() {
                 ) : project.id === 'el-khima' ? (
                   <img 
                     src="/projects/el-khima/home.jpg"
+                    alt={project.title}
+                    className="w-full h-full object-cover object-top"
+                  />
+                ) : project.id === 'sports-league' ? (
+                  <img 
+                    src="/projects/sports-league/homepage.jpg"
                     alt={project.title}
                     className="w-full h-full object-cover object-top"
                   />
