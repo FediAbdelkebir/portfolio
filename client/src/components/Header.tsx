@@ -4,7 +4,9 @@ import { Link, useLocation } from "wouter";
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [theme, setThemeState] = useState<"light" | "dark">(localStorage.getItem("theme") as "light" | "dark" || "light");
+  const [theme, setTheme] = useState<"light" | "dark">(
+    document.documentElement.classList.contains("dark") ? "dark" : "light"
+  );
   const [, setLocation] = useLocation();
 
   useEffect(() => {
@@ -15,6 +17,13 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Apply theme change whenever it changes
+  useEffect(() => {
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.add(theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -56,15 +65,8 @@ export default function Header() {
     setIsMobileMenuOpen(false);
   };
 
-  useEffect(() => {
-    // Apply theme to document when theme changes
-    document.documentElement.classList.remove('light', 'dark');
-    document.documentElement.classList.add(theme);
-    localStorage.setItem('theme', theme);
-  }, [theme]);
-
   const toggleTheme = () => {
-    setThemeState(theme === "dark" ? "light" : "dark");
+    setTheme(prevTheme => prevTheme === "dark" ? "light" : "dark");
   };
 
   return (
