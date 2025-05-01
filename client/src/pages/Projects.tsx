@@ -233,43 +233,43 @@ export default function Projects() {
               <div className="h-48 bg-dark-200 dark:bg-dark-700 relative overflow-hidden">
                 {project.id === 'workmood' ? (
                   <img 
-                    src="/projects/workmood/events-list.jpg"
+                    src={import.meta.env.MODE === 'production' ? `/portfolio/projects/workmood/events-list.jpg` : "/projects/workmood/events-list.jpg"}
                     alt={project.title}
                     className="w-full h-full object-cover object-top"
                   />
                 ) : project.id === 'ebuild' ? (
                   <img 
-                    src="/projects/ebuild/clients.jpg"
+                    src={import.meta.env.MODE === 'production' ? `/portfolio/projects/ebuild/clients.jpg` : "/projects/ebuild/clients.jpg"}
                     alt={project.title}
                     className="w-full h-full object-cover object-top"
                   />
                 ) : project.id === 'el-khima' ? (
                   <img 
-                    src="/projects/el-khima/home.jpg"
+                    src={import.meta.env.MODE === 'production' ? `/portfolio/projects/el-khima/home.jpg` : "/projects/el-khima/home.jpg"}
                     alt={project.title}
                     className="w-full h-full object-cover object-top"
                   />
                 ) : project.id === 'sports-league' ? (
                   <img 
-                    src="/projects/sports-league/homepage.jpg"
+                    src={import.meta.env.MODE === 'production' ? `/portfolio/projects/sports-league/homepage.jpg` : "/projects/sports-league/homepage.jpg"}
                     alt={project.title}
                     className="w-full h-full object-cover object-top"
                   />
                 ) : project.id === 'interactive-virtuelle' ? (
                   <img 
-                    src="/projects/siv/dashboard.jpg"
+                    src={import.meta.env.MODE === 'production' ? `/portfolio/projects/siv/dashboard.jpg` : "/projects/siv/dashboard.jpg"}
                     alt={project.title}
                     className="w-full h-full object-cover object-top"
                   />
                 ) : project.id === 'national-computer-center' ? (
                   <img 
-                    src="/projects/ncc/user-management.jpg"
+                    src={import.meta.env.MODE === 'production' ? `/portfolio/projects/ncc/user-management.jpg` : "/projects/ncc/user-management.jpg"}
                     alt={project.title}
                     className="w-full h-full object-cover object-top"
                   />
                 ) : project.id === 'neocortex' ? (
                   <img 
-                    src="/projects/neocortex/timeline.jpg"
+                    src={import.meta.env.MODE === 'production' ? `/portfolio/projects/neocortex/timeline.jpg` : "/projects/neocortex/timeline.jpg"}
                     alt={project.title}
                     className="w-full h-full object-cover object-top"
                   />
@@ -296,7 +296,7 @@ export default function Projects() {
                   ))}
                 </div>
                 
-                <Link to={`/projects/${project.id}`} className="inline-block">
+                <Link to={import.meta.env.MODE === 'production' ? `/portfolio/projects/${project.id}` : `/projects/${project.id}`} className="inline-block">
                   <span className="text-primary hover:text-primary/80 transition-colors flex items-center gap-1">
                     View Project Details
                     <i className="fas fa-arrow-right text-xs"></i>

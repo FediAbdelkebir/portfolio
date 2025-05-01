@@ -349,9 +349,11 @@ export default function ProjectDetail() {
   
   // Function to get correct image path with base URL for GitHub Pages
   const getImagePath = (path: string): string => {
+    // Make sure the path starts with a slash
+    const normalizedPath = path.startsWith('/') ? path : `/${path}`;
     return import.meta.env.MODE === 'production' 
-      ? `/portfolio${path}` 
-      : path;
+      ? `/portfolio${normalizedPath}` 
+      : normalizedPath;
   };
   
   useEffect(() => {
