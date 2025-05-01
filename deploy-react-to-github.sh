@@ -1,143 +1,88 @@
 #!/bin/bash
 
-# Simple script to deploy a React app to GitHub Pages
-echo "Preparing React app for GitHub Pages deployment..."
+# Color codes for better output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+NC='\033[0m' # No Color
 
-# Step 1: Install gh-pages package
-npm install --save-dev gh-pages
-
-# Step 2: Update package.json
-echo "Updating package.json..."
-
-# Temporary file to hold the new package.json
-cat > temp_package.json << 'EOF'
-{
-  "name": "portfolio",
-  "version": "1.0.0",
-  "homepage": "https://fediabdelkebir.github.io/portfolio",
-  "type": "module",
-  "scripts": {
-    "dev": "vite --host",
-    "build": "vite build",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
-  },
-  "dependencies": {
-    "@hookform/resolvers": "^3.3.4",
-    "@radix-ui/react-accordion": "^1.1.2",
-    "@radix-ui/react-alert-dialog": "^1.0.5",
-    "@radix-ui/react-aspect-ratio": "^1.0.3",
-    "@radix-ui/react-avatar": "^1.0.4",
-    "@radix-ui/react-checkbox": "^1.0.4",
-    "@radix-ui/react-collapsible": "^1.0.3",
-    "@radix-ui/react-context-menu": "^2.1.5",
-    "@radix-ui/react-dialog": "^1.0.5",
-    "@radix-ui/react-dropdown-menu": "^2.0.6",
-    "@radix-ui/react-hover-card": "^1.0.7",
-    "@radix-ui/react-label": "^2.0.2",
-    "@radix-ui/react-menubar": "^1.0.4",
-    "@radix-ui/react-navigation-menu": "^1.1.4",
-    "@radix-ui/react-popover": "^1.0.7",
-    "@radix-ui/react-progress": "^1.0.3",
-    "@radix-ui/react-radio-group": "^1.1.3",
-    "@radix-ui/react-scroll-area": "^1.0.5",
-    "@radix-ui/react-select": "^2.0.0",
-    "@radix-ui/react-separator": "^1.0.3",
-    "@radix-ui/react-slider": "^1.1.2",
-    "@radix-ui/react-slot": "^1.0.2",
-    "@radix-ui/react-switch": "^1.0.3",
-    "@radix-ui/react-tabs": "^1.0.4",
-    "@radix-ui/react-toast": "^1.1.5",
-    "@radix-ui/react-toggle": "^1.0.3",
-    "@radix-ui/react-toggle-group": "^1.0.4",
-    "@radix-ui/react-tooltip": "^1.0.7",
-    "@tailwindcss/typography": "^0.5.10",
-    "@tanstack/react-query": "^5.24.1",
-    "@types/react": "^18.2.57",
-    "@types/react-dom": "^18.2.19",
-    "@vitejs/plugin-react": "^4.2.1",
-    "autoprefixer": "^10.4.17",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.0",
-    "cmdk": "^0.2.1",
-    "date-fns": "^3.3.1",
-    "embla-carousel-react": "^8.0.0",
-    "framer-motion": "^11.0.8",
-    "input-otp": "^1.0.1",
-    "lucide-react": "^0.338.0",
-    "postcss": "^8.4.35",
-    "react": "^18.2.0",
-    "react-day-picker": "^8.10.0",
-    "react-dom": "^18.2.0",
-    "react-hook-form": "^7.50.1",
-    "react-icons": "^5.0.1",
-    "react-resizable-panels": "^2.0.9",
-    "recharts": "^2.12.1",
-    "tailwind-merge": "^2.2.1",
-    "tailwindcss": "^3.4.1",
-    "tailwindcss-animate": "^1.0.7",
-    "typescript": "^5.3.3",
-    "vaul": "^0.9.0",
-    "vite": "^5.1.4",
-    "wouter": "^3.0.0",
-    "zod": "^3.22.4",
-    "zod-validation-error": "^2.1.0"
-  },
-  "devDependencies": {
-    "@replit/vite-plugin-runtime-error-modal": "^1.0.4",
-    "@replit/vite-plugin-shadcn-theme-json": "^1.0.4",
-    "gh-pages": "^6.1.1"
-  }
+print_header() {
+  echo -e "\n${YELLOW}=====================================${NC}"
+  echo -e "${YELLOW}$1${NC}"
+  echo -e "${YELLOW}=====================================${NC}\n"
 }
-EOF
 
-mv temp_package.json package.json
+print_step() {
+  echo -e "${GREEN}>> $1${NC}"
+}
 
-# Step 3: Update vite.config.ts
-echo "Updating vite.config.ts..."
+print_error() {
+  echo -e "${RED}ERROR: $1${NC}"
+}
 
-cat > vite.config.ts << 'EOF'
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import path from "path";
-import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
+# Ensure we're in the project root
+if [ ! -f "package.json" ]; then
+  print_error "Cannot find package.json. Please run this script from the project root."
+  exit 1
+fi
 
-export default defineConfig({
-  plugins: [
-    react(),
-    runtimeErrorOverlay(),
-  ],
-  resolve: {
-    alias: {
-      "@": path.resolve(import.meta.dirname, "client", "src"),
-      "@assets": path.resolve(import.meta.dirname, "attached_assets"),
-    },
-  },
-  root: path.resolve(import.meta.dirname, "client"),
-  build: {
-    outDir: path.resolve(import.meta.dirname, "dist"),
-    emptyOutDir: true,
-  },
-  base: "/portfolio/", // Critical for GitHub Pages
-});
-EOF
+print_header "GitHub Pages Deployment Script for React Portfolio"
 
-# Step 4: Create 404.html for SPA routing
-echo "Creating 404.html for SPA routing..."
+# Step 1: Configure package.json for GitHub Pages
+print_step "Configuring package.json for GitHub Pages..."
+
+# Add homepage if it doesn't exist
+if ! grep -q '"homepage":' package.json; then
+  print_step "Adding homepage field to package.json..."
+  sed -i '1a\  "homepage": "https://fediabdelkebir.github.io/portfolio",' package.json
+else
+  print_step "Homepage already configured."
+fi
+
+# Add deployment scripts if they don't exist
+if ! grep -q '"deploy":' package.json; then
+  print_step "Adding deployment scripts to package.json..."
+  if grep -q '"scripts": {' package.json; then
+    sed -i '/"scripts": {/a\    "predeploy": "npm run build",\n    "deploy": "gh-pages -d dist/public",' package.json
+  else
+    print_error "Could not find scripts section in package.json"
+    exit 1
+  fi
+else
+  print_step "Deployment scripts already configured."
+fi
+
+# Step 2: Install gh-pages if not already installed
+if ! npm list gh-pages --depth=0 2>/dev/null | grep -q 'gh-pages'; then
+  print_step "Installing gh-pages package..."
+  npm install --save-dev gh-pages
+else
+  print_step "gh-pages package already installed."
+fi
+
+# Step 3: Update vite.config.ts for GitHub Pages
+print_step "Updating Vite configuration..."
+if grep -q "base: \"/portfolio/\"" vite.config.ts; then
+  print_step "Base path already configured in vite.config.ts"
+else
+  print_step "Adding base path to vite.config.ts..."
+  sed -i 's/export default defineConfig({/export default defineConfig({\
+  base: "\/portfolio\/",/' vite.config.ts
+fi
+
+# Step 4: Create 404.html for client-side routing support
+print_step "Creating 404.html for client-side routing support..."
 mkdir -p client/public
-
-cat > client/public/404.html << 'EOF'
+cat > client/public/404.html << 'EOL'
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Single Page Apps for GitHub Pages</title>
-  <script type="text/javascript">
+  <title>Fedi Abdelkebir Portfolio</title>
+  <script>
     // Single Page Apps for GitHub Pages
-    // MIT License
     // https://github.com/rafgraph/spa-github-pages
-    var pathSegmentsToKeep = 1;
+    var pathSegmentsToKeep = 1; // Adjust for repo name (portfolio)
 
     var l = window.location;
     l.replace(
@@ -150,68 +95,72 @@ cat > client/public/404.html << 'EOF'
   </script>
 </head>
 <body>
+  <h2>Redirecting...</h2>
 </body>
 </html>
-EOF
+EOL
 
-# Step 5: Add route handling script to index.html
-echo "Adding route handling to index.html..."
+print_step "Updating index.html to handle GitHub Pages SPA redirects..."
+CAT_INDEX_CONTENT=$(cat << 'EOL'
+<!-- Start Single Page App redirect script -->
+<script type="text/javascript">
+  // Single Page Apps for GitHub Pages
+  // https://github.com/rafgraph/spa-github-pages
+  (function(l) {
+    if (l.search[1] === '/' ) {
+      var decoded = l.search.slice(1).split('&').map(function(s) { 
+        return s.replace(/~and~/g, '&')
+      }).join('?');
+      window.history.replaceState(null, null,
+        l.pathname.slice(0, -1) + decoded + l.hash
+      );
+    }
+  }(window.location))
+</script>
+<!-- End Single Page App redirect script -->
+EOL
+)
 
-# Check if the script is already there
+# Check if the redirect script is already in index.html
 if grep -q "Single Page Apps for GitHub Pages" client/index.html; then
-  echo "GitHub Pages script already in index.html"
+  print_step "Redirect script already exists in index.html"
 else
-  # Create a script to inject into the head
-  cat > gh_pages_script.html << 'EOF'
-  <!-- Start Single Page Apps for GitHub Pages -->
-  <script type="text/javascript">
-    // Single Page Apps for GitHub Pages
-    // MIT License
-    // https://github.com/rafgraph/spa-github-pages
-    (function(l) {
-      if (l.search[1] === '/' ) {
-        var decoded = l.search.slice(1).split('&').map(function(s) { 
-          return s.replace(/~and~/g, '&')
-        }).join('?');
-        window.history.replaceState(null, null,
-            l.pathname.slice(0, -1) + decoded + l.hash
-        );
-      }
-    }(window.location))
-  </script>
-  <!-- End Single Page Apps for GitHub Pages -->
-EOF
-
-  # Insert the script before the closing head tag
-  sed -i "s|</head>|$(cat gh_pages_script.html)\n</head>|" client/index.html
-  rm gh_pages_script.html
+  # Add it before the closing head tag
+  sed -i "s|</head>|$CAT_INDEX_CONTENT\n</head>|" client/index.html
 fi
 
-# Step 6: Clean up unnecessary files
-echo "Cleaning up unnecessary files..."
-rm -rf server db shared drizzle.config.ts .github
-rm -f github-pages-setup.sh prepare-for-download.sh vite.github-pages.config.js
+# Step 5: Run build and deploy
+print_header "Ready to build and deploy!"
+echo -e "${YELLOW}This will:${NC}"
+echo -e "1. Build your React app with the correct base path"
+echo -e "2. Deploy it to the gh-pages branch of your repository"
+echo -e "\n${RED}Make sure you have:${NC}"
+echo -e "- Created a GitHub repository named 'portfolio'"
+echo -e "- Pushed your code to GitHub"
+echo -e "- Set up your GitHub repository Settings → Pages to use gh-pages branch"
 
-echo ""
-echo "===================================================="
-echo "   React App Ready for GitHub Pages Deployment!    "
-echo "===================================================="
-echo ""
-echo "To deploy your website:"
-echo ""
-echo "1. Create a GitHub repository named 'portfolio'"
-echo "2. Push your code to GitHub:"
-echo "   git init"
-echo "   git add ."
-echo "   git commit -m 'Initial commit'"
-echo "   git branch -M main"
-echo "   git remote add origin https://github.com/fediabdelkebir/portfolio.git"
-echo "   git push -u origin main"
-echo ""
-echo "3. Run the deploy command:"
-echo "   npm run deploy"
-echo ""
-echo "4. Your website will be live at:"
-echo "   https://fediabdelkebir.github.io/portfolio/"
-echo ""
-echo "===================================================="
+read -p "Continue with build and deploy? (y/n) " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  print_step "Building your React app..."
+  npm run build
+  
+  if [ $? -eq 0 ]; then
+    print_step "Deploying to GitHub Pages..."
+    npx gh-pages -d dist/public
+    
+    if [ $? -eq 0 ]; then
+      print_header "Deployment successful!"
+      echo -e "Your portfolio should be available at: ${GREEN}https://fediabdelkebir.github.io/portfolio/${NC}"
+      echo -e "(It might take a few minutes for GitHub to update the site)"
+      echo -e "\n${YELLOW}Note:${NC} If you encounter any issues with navigation or missing resources,"
+      echo -e "make sure all your links and assets use relative paths or the correct base URL."
+    else
+      print_error "Deployment failed. Check if you have push access to the repository."
+    fi
+  else
+    print_error "Build failed. Please fix the errors and try again."
+  fi
+else
+  print_step "Deployment cancelled."
+fi

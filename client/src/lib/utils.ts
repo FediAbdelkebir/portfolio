@@ -15,10 +15,9 @@ export function isInViewport(element: HTMLElement): boolean {
   );
 }
 
-export function throttle(func: Function, delay: number): () => void {
+export function throttle(func: Function, delay: number): (...args: any[]) => void {
   let inThrottle: boolean;
-  return function() {
-    const args = arguments;
+  return function(this: any, ...args: any[]) {
     const context = this;
     if (!inThrottle) {
       func.apply(context, args);

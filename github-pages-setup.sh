@@ -1,161 +1,77 @@
 #!/bin/bash
 
-# GitHub Pages Configuration Script
+# This script prepares your project for GitHub Pages deployment
 
-# Set your GitHub username and repository name
-GITHUB_USERNAME="fediabdelkebir"
-REPO_NAME="portfolio"
+# Step 1: Add the necessary base path to vite.config.ts
+echo "Updating Vite configuration..."
+sed -i 's/export default defineConfig({/export default defineConfig({\
+  base: "\/portfolio\/",/' vite.config.ts
 
-# Create GitHub Actions directory
-mkdir -p .github/workflows
+# Step 2: Create a 404.html file that redirects to index.html
+echo "Creating 404.html redirect..."
+mkdir -p client/public
+cat > client/public/404.html << 'EOL'
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting...</title>
+  <script>
+    // Single Page Apps for GitHub Pages
+    // https://github.com/rafgraph/spa-github-pages
+    
+    // This script checks if a redirect is needed and sends the user to the home page
+    // with the correct base path
+    (function(l) {
+      if (l.search[1] === '/' ) {
+        var decoded = l.search.slice(1).split('&').map(function(s) { 
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+            l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+    
+    // Redirect to the root of the site
+    var segmentCount = 1; // Change this depending on your repo name: 1 for username.github.io, 2 for username.github.io/repo-name
+    var l = window.location;
+    l.replace(
+      l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+      l.pathname.split('/').slice(0, 1 + segmentCount).join('/') + '/?/' +
+      l.pathname.slice(1).split('/').slice(segmentCount).join('/').replace(/&/g, '~and~') +
+      (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+      l.hash
+    );
+  </script>
+</head>
+<body>
+  <p>Redirecting...</p>
+</body>
+</html>
+EOL
 
-# Create GitHub Actions workflow file
-cat > .github/workflows/github-pages.yml << 'EOF'
-name: Deploy to GitHub Pages
+# Step 3: Create a custom script in package.json to deploy to GitHub Pages
+echo "Adding GitHub Pages deployment scripts to package.json..."
 
-on:
-  push:
-    branches: [ main ]
-  workflow_dispatch:
+# Check if homepage is already set
+if ! grep -q '"homepage":' package.json; then
+  # Insert homepage after the first line (assumes first line is opening brace)
+  sed -i '1a\  "homepage": "https://fediabdelkebir.github.io/portfolio",' package.json
+fi
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+# Check if gh-pages scripts are already set
+if ! grep -q '"deploy":' package.json; then
+  # Find the "scripts": { line and add the new scripts after it
+  sed -i '/"scripts": {/a\    "predeploy": "npm run build",\n    "deploy": "gh-pages -d dist/public",' package.json
+fi
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
+# Step 4: Install gh-pages dependency if not already installed
+if ! grep -q '"gh-pages":' package.json; then
+  echo "Installing gh-pages package..."
+  npm install --save-dev gh-pages
+fi
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-          cache: 'npm'
-      
-      - name: Install dependencies
-        run: npm ci
-      
-      - name: Update Vite config for GitHub Pages
-        run: |
-          cat > vite.config.ts << 'VITE'
-          import { defineConfig } from "vite";
-          import react from "@vitejs/plugin-react";
-          import path from "path";
-          import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
-
-          // Add base path for GitHub Pages
-          export default defineConfig({
-            plugins: [
-              react(),
-              runtimeErrorOverlay(),
-            ],
-            resolve: {
-              alias: {
-                "@db": path.resolve(import.meta.dirname, "db"),
-                "@": path.resolve(import.meta.dirname, "client", "src"),
-                "@shared": path.resolve(import.meta.dirname, "shared"),
-                "@assets": path.resolve(import.meta.dirname, "attached_assets"),
-              },
-            },
-            root: path.resolve(import.meta.dirname, "client"),
-            build: {
-              outDir: path.resolve(import.meta.dirname, "dist/public"),
-              emptyOutDir: true,
-            },
-            base: "/portfolio/", // Replace with your repo name
-          });
-          VITE
-      
-      - name: Setup SPA routing for GitHub Pages
-        run: |
-          # Create 404.html for SPA fallback
-          mkdir -p client/public
-          cat > client/public/404.html << 'EOF404'
-          <!DOCTYPE html>
-          <html>
-          <head>
-            <meta charset="utf-8">
-            <title>Redirecting...</title>
-            <script>
-              sessionStorage.redirect = location.href;
-            </script>
-            <meta http-equiv="refresh" content="0;URL='/portfolio/'">
-          </head>
-          <body>
-            <h1>Redirecting...</h1>
-            <p>If you are not redirected automatically, click <a href="/portfolio/">here</a>.</p>
-          </body>
-          </html>
-          EOF404
-          
-          # Add redirect script to index.html
-          cat > redirect_script.txt << 'REDIRECT'
-          <script>
-          (function() {
-            var redirect = sessionStorage.redirect;
-            delete sessionStorage.redirect;
-            if (redirect && redirect !== location.href) {
-              history.replaceState(null, null, redirect.replace("/portfolio/", "/"));
-            }
-          })();
-          </script>
-          REDIRECT
-          
-          sed -i "s|</head>|$(cat redirect_script.txt)\n</head>|" client/index.html
-          rm redirect_script.txt
-      
-      - name: Build
-        run: npm run build
-      
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-      
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: './dist/public'
-  
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
-EOF
-
-# Display instructions
-echo ""
-echo "====================================================="
-echo "   GitHub Pages Setup Complete - Follow These Steps  "
-echo "====================================================="
-echo ""
-echo "1. Create a repository on GitHub named: $REPO_NAME"
-echo ""
-echo "2. Push your code with these commands:"
-echo "   git init"
-echo "   git add ."
-echo "   git commit -m 'Initial commit'"
-echo "   git branch -M main"
-echo "   git remote add origin https://github.com/$GITHUB_USERNAME/$REPO_NAME.git"
-echo "   git push -u origin main"
-echo ""
-echo "3. On GitHub, go to your repository settings:"
-echo "   - Click 'Settings' > 'Pages'"
-echo "   - Under 'Build and deployment' select 'GitHub Actions'"
-echo ""
-echo "4. Wait for deployment to complete"
-echo "   Your site will be available at: https://$GITHUB_USERNAME.github.io/$REPO_NAME/"
-echo ""
-echo "====================================================="
+echo "Setup complete! Now you can run 'npm run deploy' to deploy to GitHub Pages."
+echo "⚠️ Important: Make sure to create a GitHub repository named 'portfolio' first!"
+echo "⚠️ Important: Make sure to commit and push your changes before deploying."
