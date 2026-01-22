@@ -94,6 +94,26 @@ const projectsData: Project[] = [
     shortDescription: "An advanced application to combat identity fraud using document control and verification.",
     technologies: ["Angular", "TypeScript", "Spring Boot", "RabbitMQ", "Elasticsearch"],
     thumbnail: "/projects/tessi/thumbnail.jpg"
+  },
+  {
+    id: "smart-control-demo",
+    title: "Smart Control Demonstrateur",
+    company: "Tessi",
+    period: "AUGUST 2024 - OCTOBER 2024",
+    type: "Fullstack Web Development",
+    shortDescription: "A KYC controls engine demonstration app for document upload, management, and automated analysis results visualization.",
+    technologies: ["Angular 18", "TypeScript", "REST APIs", "Reactive Programming"],
+    thumbnail: "/images/projects/smart-control-demo/main.png"
+  },
+  {
+    id: "smart-control-config",
+    title: "Smart Control Configurateur",
+    company: "Tessi",
+    period: "OCTOBER 2024 - JANUARY 2025",
+    type: "Fullstack Web Development",
+    shortDescription: "A no-code platform for creating, modifying, and managing KYC control configurations with a visual interface.",
+    technologies: ["Angular 18", "TypeScript", "Spring Boot", "JSON Path", "Reactive Forms"],
+    thumbnail: "/images/projects/smart-control-config/about.png"
   }
 ];
 
@@ -130,16 +150,26 @@ export default function Projects() {
         return matchesSearch && matchesTech;
       })
       .sort((a: Project, b: Project) => {
-        // Convert period strings to dates (assuming format "MONTH YEAR - MONTH YEAR" or "MONTH YEAR - Present")
-        const getEndDate = (period: string) => {
-          if (period.includes('Present')) return new Date();
-          const endPart = period.split(' - ')[1];
-          return new Date(endPart);
+        // Map month names to numbers for reliable parsing
+        const months: { [key: string]: number } = {
+          'january': 0, 'february': 1, 'march': 2, 'april': 3, 'may': 4, 'june': 5,
+          'july': 6, 'august': 7, 'september': 8, 'october': 9, 'november': 10, 'december': 11
+        };
+
+        const parseDate = (period: string) => {
+          if (period.toLowerCase().includes('present')) return new Date();
+          const parts = period.split(' - ');
+          const datePart = parts.length > 1 ? parts[1] : parts[0];
+          const [monthStr, yearStr] = datePart.split(' ');
+          const month = months[monthStr.toLowerCase()] || 0;
+          const year = parseInt(yearStr);
+          return new Date(year, month);
         };
         
-        const dateA = getEndDate(a.period);
-        const dateB = getEndDate(b.period);
+        const dateA = parseDate(a.period);
+        const dateB = parseDate(b.period);
         
+        // If newest first, we want larger dates first (B - A)
         return sortOrder === 'newest' ? 
           dateB.getTime() - dateA.getTime() : 
           dateA.getTime() - dateB.getTime();
@@ -222,88 +252,105 @@ export default function Projects() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project: Project, index: number) => (
-            <motion.div
+            <Link 
               key={project.id}
-              className="bg-white dark:bg-dark-800 rounded-xl shadow-md overflow-hidden"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              to={import.meta.env.MODE === 'production' ? `/portfolio/projects/${project.id}` : `/projects/${project.id}`}
+              className="block"
             >
-              <div className="h-48 bg-dark-200 dark:bg-dark-700 relative overflow-hidden">
-                {project.id === 'workmood' ? (
-                  <img 
-                    src={import.meta.env.MODE === 'production' ? `/portfolio/projects/workmood/events-list.jpg` : "/projects/workmood/events-list.jpg"}
-                    alt={project.title}
-                    className="w-full h-full object-cover object-top"
-                  />
-                ) : project.id === 'ebuild' ? (
-                  <img 
-                    src={import.meta.env.MODE === 'production' ? `/portfolio/projects/ebuild/clients.jpg` : "/projects/ebuild/clients.jpg"}
-                    alt={project.title}
-                    className="w-full h-full object-cover object-top"
-                  />
-                ) : project.id === 'el-khima' ? (
-                  <img 
-                    src={import.meta.env.MODE === 'production' ? `/portfolio/projects/el-khima/home.jpg` : "/projects/el-khima/home.jpg"}
-                    alt={project.title}
-                    className="w-full h-full object-cover object-top"
-                  />
-                ) : project.id === 'sports-league' ? (
-                  <img 
-                    src={import.meta.env.MODE === 'production' ? `/portfolio/projects/sports-league/homepage.jpg` : "/projects/sports-league/homepage.jpg"}
-                    alt={project.title}
-                    className="w-full h-full object-cover object-top"
-                  />
-                ) : project.id === 'interactive-virtuelle' ? (
-                  <img 
-                    src={import.meta.env.MODE === 'production' ? `/portfolio/projects/siv/dashboard.jpg` : "/projects/siv/dashboard.jpg"}
-                    alt={project.title}
-                    className="w-full h-full object-cover object-top"
-                  />
-                ) : project.id === 'national-computer-center' ? (
-                  <img 
-                    src={import.meta.env.MODE === 'production' ? `/portfolio/projects/ncc/user-management.jpg` : "/projects/ncc/user-management.jpg"}
-                    alt={project.title}
-                    className="w-full h-full object-cover object-top"
-                  />
-                ) : project.id === 'neocortex' ? (
-                  <img 
-                    src={import.meta.env.MODE === 'production' ? `/portfolio/projects/neocortex/timeline.jpg` : "/projects/neocortex/timeline.jpg"}
-                    alt={project.title}
-                    className="w-full h-full object-cover object-top"
-                  />
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center bg-dark-800/50 text-white">
-                    <i className="fas fa-laptop-code text-4xl"></i>
-                  </div>
-                )}
-              </div>
-              <div className="p-6">
-                <div className="text-xs font-medium text-primary mb-1">{project.type}</div>
-                <h3 className="text-xl font-bold mb-2 text-dark-800 dark:text-white">{project.title}</h3>
-                <p className="text-dark-500 dark:text-dark-400 text-sm mb-1">{project.company} | {project.period}</p>
-                <p className="text-dark-600 dark:text-dark-300 text-sm mb-4">{project.shortDescription}</p>
-                
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech: string, i: number) => (
-                    <span 
-                      key={i}
-                      className="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-primary rounded text-xs"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+              <motion.div
+                className="h-full bg-white dark:bg-dark-800 rounded-xl shadow-md overflow-hidden cursor-pointer"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              >
+                <div className="h-48 bg-dark-200 dark:bg-dark-700 relative overflow-hidden">
+                  {project.id === 'workmood' ? (
+                    <img 
+                      src={import.meta.env.MODE === 'production' ? `/portfolio/projects/workmood/events-list.jpg` : "/projects/workmood/events-list.jpg"}
+                      alt={project.title}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  ) : project.id === 'ebuild' ? (
+                    <img 
+                      src={import.meta.env.MODE === 'production' ? `/portfolio/projects/ebuild/clients.jpg` : "/projects/ebuild/clients.jpg"}
+                      alt={project.title}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  ) : project.id === 'el-khima' ? (
+                    <img 
+                      src={import.meta.env.MODE === 'production' ? `/portfolio/projects/el-khima/home.jpg` : "/projects/el-khima/home.jpg"}
+                      alt={project.title}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  ) : project.id === 'sports-league' ? (
+                    <img 
+                      src={import.meta.env.MODE === 'production' ? `/portfolio/projects/sports-league/homepage.jpg` : "/projects/sports-league/homepage.jpg"}
+                      alt={project.title}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  ) : project.id === 'interactive-virtuelle' ? (
+                    <img 
+                      src={import.meta.env.MODE === 'production' ? `/portfolio/projects/siv/dashboard.jpg` : "/projects/siv/dashboard.jpg"}
+                      alt={project.title}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  ) : project.id === 'national-computer-center' ? (
+                    <img 
+                      src={import.meta.env.MODE === 'production' ? `/portfolio/projects/ncc/user-management.jpg` : "/projects/ncc/user-management.jpg"}
+                      alt={project.title}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  ) : project.id === 'neocortex' ? (
+                    <img 
+                      src={import.meta.env.MODE === 'production' ? `/portfolio/projects/neocortex/timeline.jpg` : "/projects/neocortex/timeline.jpg"}
+                      alt={project.title}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  ) : project.id === 'smart-control-demo' ? (
+                    <img 
+                      src={import.meta.env.MODE === 'production' ? `/portfolio/images/projects/smart-control-demo/main.png` : "/images/projects/smart-control-demo/main.png"}
+                      alt={project.title}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  ) : project.id === 'smart-control-config' ? (
+                    <img 
+                      src={import.meta.env.MODE === 'production' ? `/portfolio/images/projects/smart-control-config/about.png` : "/images/projects/smart-control-config/about.png"}
+                      alt={project.title}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center bg-dark-800/50 text-white">
+                      <i className="fas fa-laptop-code text-4xl"></i>
+                    </div>
+                  )}
                 </div>
-                
-                <Link to={import.meta.env.MODE === 'production' ? `/portfolio/projects/${project.id}` : `/projects/${project.id}`} className="inline-block">
-                  <span className="text-primary hover:text-primary/80 transition-colors flex items-center gap-1">
-                    View Project Details
-                    <i className="fas fa-arrow-right text-xs"></i>
-                  </span>
-                </Link>
-              </div>
-            </motion.div>
+                <div className="p-6">
+                  <div className="text-xs font-medium text-primary mb-1">{project.type}</div>
+                  <h3 className="text-xl font-bold mb-2 text-dark-800 dark:text-white">{project.title}</h3>
+                  <p className="text-dark-500 dark:text-dark-400 text-sm mb-1">{project.company} | {project.period}</p>
+                  <p className="text-dark-600 dark:text-dark-300 text-sm mb-4">{project.shortDescription}</p>
+                  
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.map((tech: string, i: number) => (
+                      <span 
+                        key={i}
+                        className="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-primary rounded text-xs"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  
+                  <div className="inline-block">
+                    <span className="text-primary hover:text-primary/80 transition-colors flex items-center gap-1">
+                      View Project Details
+                      <i className="fas fa-arrow-right text-xs"></i>
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            </Link>
           ))}
         </div>
       </div>

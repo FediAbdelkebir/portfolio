@@ -121,9 +121,9 @@ export default function About() {
                 <i className="fas fa-map-marker-alt"></i>
               </div>
               <div>
-                <p className="text-dark-600 dark:text-dark-300">Tunisia, Tunis, El Ouardia 1, Fidelity Street</p>
+                <p className="text-dark-600 dark:text-dark-300">Tunisia, Tunis</p>
                 <div className="mt-4">
-                  <a href="https://maps.google.com/?q=Tunisia,Tunis,El+Ouardia+1,Fidelity+Street" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/90 transition-colors flex items-center gap-2">
+                  <a href="https://maps.google.com/?q=Tunisia,Tunis" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/90 transition-colors flex items-center gap-2">
                     <span>View on map</span>
                     <i className="fas fa-external-link-alt text-xs"></i>
                   </a>

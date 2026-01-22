@@ -339,7 +339,88 @@ const projectsData: Record<string, ProjectDetails> = {
     ],
     outcome: "The Enterprise Social Network platform was successfully deployed to multiple corporate clients, significantly improving internal communication and employee engagement. The achievement system became particularly popular, with companies reporting increased participation in corporate initiatives tied to badge rewards. The platform's customization capabilities allowed each client to create a unique digital workspace that reflected their brand and culture, while the underlying architecture ensured consistent performance and security across all deployments."
   },
-  // Add more projects as needed
+  "smart-control-demo": {
+    id: "smart-control-demo",
+    title: "Smart Control Demonstrateur",
+    company: "Tessi",
+    period: "AUGUST 2024 - OCTOBER 2024",
+    type: "Fullstack Web Development",
+    description: [
+      "The KYC Controls Engine Demo App is an Angular 18 application designed to demonstrate a powerful KYC (Know Your Customer) controls engine.",
+      "It provides a complete interface for user authentication, document management, and the execution of complex validation rules on uploaded documents.",
+      "The application serves as showcase for the engine's capabilities, allowing users to visualize the automated analysis results and the multi-language support (French/English) integrated into the system."
+    ],
+    challenge: "The main challenge was to create a user-friendly demonstration of a complex backend engine, ensuring that technical validation results were presented in an understandable way for business users while maintaining a high standard of code quality and performance.",
+    solution: "I implemented a reactive frontend using Angular 18 that handles asynchronous document processing and real-time result visualization. I focused on memory leak prevention, type-safe API calls, and a centralized error handling system to ensure a robust demonstration environment.",
+    features: [
+      "User authentication and token management",
+      "Document upload and management system",
+      "Folder management for organizing controls",
+      "Control execution and results visualization",
+      "Multi-language support (French/English)",
+      "Structured logging and toast notifications",
+      "Mock run mode for local testing without external services"
+    ],
+    technologies: [
+      "Angular 18",
+      "TypeScript",
+      "RxJS",
+      "RESTful APIs",
+      "Docker",
+      "ESLint",
+      "Prettier"
+    ],
+    screenshots: [
+      { url: "/images/projects/smart-control-demo/login.png", caption: "Secure login interface for the KYC Controls Demo" },
+      { url: "/images/projects/smart-control-demo/main.png", caption: "Main dashboard showing document analysis and validation results" }
+    ],
+    outcome: "The demonstrator allowed stakeholders to quickly grasp the value of the KYC controls engine, leading to increased adoption and clearer communication between technical teams and business departments. The use of modern Angular 18 patterns ensured the application was easy to maintain and extend."
+  },
+  "smart-control-config": {
+    id: "smart-control-config",
+    title: "Smart Control Configurateur",
+    company: "Tessi",
+    period: "OCTOBER 2024 - JANUARY 2025",
+    type: "Fullstack Web Development",
+    description: [
+      "The Smart Control Configurateur is a specialized no-code platform designed to assist in the creation and management of complex JSON-based configuration scripts.",
+      "These scripts define the sequence of actions to be executed by a KYC validation engine, including document analysis, field validation, and inter-document consistency checks.",
+      "The application provides tools for managing the action documentation, formalizing grammar rules, and building configurations through an intuitive visual interface."
+    ],
+    challenge: "Building a configuration tool that can handle the complexity of nested document structures and interdependent validation actions required a deep understanding of the configuration grammar and a way to make it accessible to non-technical users.",
+    solution: "I developed a comprehensive configuration builder that uses a grammar model to validate rules in real-time. The interface allows users to browse documented actions, add fields to documents, and configure complex 'controls_inter' for multi-document validation without writing raw JSON.",
+    features: [
+      "Visual no-code configuration builder",
+      "Action documentation library and search",
+      "Grammar-based validation for configuration rules",
+      "Support for intra-document and inter-document controls",
+      "Import/Export of configuration scripts in JSON format",
+      "Live JSON preview of the generated configuration",
+      "Multi-document configuration support (e.g., JDOM, CNI matching)"
+    ],
+    technologies: [
+      "Angular 18",
+      "TypeScript",
+      "Spring Boot",
+      "PostgreSQL",
+      "JSON Path",
+      "Reactive Forms",
+      "Bootstrap"
+    ],
+    screenshots: [
+      { url: "/images/projects/smart-control-config/about.png", caption: "Application introduction showing key features and technical info" },
+      { url: "/images/projects/smart-control-config/list.png", caption: "List of existing KYC configurations with status tracking" },
+      { url: "/images/projects/smart-control-config/create.png", caption: "Wizard for creating a new configuration" },
+      { url: "/images/projects/smart-control-config/editor.png", caption: "Visual editor for document fields and validation actions" },
+      { url: "/images/projects/smart-control-config/form.png", caption: "Action configuration form with parameter validation" },
+      { url: "/images/projects/smart-control-config/import.png", caption: "Configuration import interface from JSON files" },
+      { url: "/images/projects/smart-control-config/json.png", caption: "Live JSON preview of the configuration script" },
+      { url: "/images/projects/smart-control-config/json-file.png", caption: "Detailed view of the exported documentation JSON" },
+      { url: "/images/projects/smart-control-config/view.png", caption: "Documentation viewer for specific validation actions" },
+      { url: "/images/projects/smart-control-config/modify.png", caption: "Interface for modifying existing action documentations" }
+    ],
+    outcome: "The configurator drastically reduced the time required to onboard new KYC document types, moving from days of manual JSON writing to hours of visual configuration. It also eliminated common syntax errors and improved the reliability of the validation scripts deployed in production."
+  }
 };
 
 export default function ProjectDetail() {

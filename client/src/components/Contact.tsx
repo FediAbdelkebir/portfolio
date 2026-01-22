@@ -124,7 +124,17 @@ export default function Contact() {
                 </div>
               </div>
               
-              {/* Location information removed as requested */}
+              <div className="flex items-start gap-4">
+                <div className="text-xl text-primary pt-1">
+                  <i className="fas fa-map-marker-alt"></i>
+                </div>
+                <div>
+                  <p className="text-dark-600 dark:text-dark-300 mb-1">Location</p>
+                  <p className="text-dark-800 dark:text-white">
+                    Tunisia, Tunis
+                  </p>
+                </div>
+              </div>
             </div>
 
             <div className="mt-8">

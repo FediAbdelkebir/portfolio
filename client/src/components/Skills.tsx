@@ -3,19 +3,19 @@ import SkillBar from "./SkillBar";
 
 export default function Skills() {
   const frontendSkills = [
-    { name: "Angular", percentage: 95 },
-    { name: "React", percentage: 85 },
-    { name: "TypeScript", percentage: 90 },
-    { name: "JavaScript", percentage: 90 },
-    { name: "HTML5/CSS3", percentage: 95 }
+    { name: "Angular" },
+    { name: "React" },
+    { name: "TypeScript" },
+    { name: "JavaScript" },
+    { name: "HTML5/CSS3" }
   ];
 
   const backendSkills = [
-    { name: "Spring Boot", percentage: 90 },
-    { name: "Node.js", percentage: 85 },
-    { name: "Java", percentage: 90 },
-    { name: "C/C++", percentage: 80 },
-    { name: "Symfony", percentage: 75 }
+    { name: "Spring Boot" },
+    { name: "Node.js" },
+    { name: "Java" },
+    { name: "C/C++" },
+    { name: "Symfony" }
   ];
 
   const otherTechnologies = [
@@ -56,7 +56,6 @@ export default function Skills() {
                 <SkillBar 
                   key={index} 
                   name={skill.name} 
-                  percentage={skill.percentage} 
                 />
               ))}
             </div>
@@ -76,7 +75,6 @@ export default function Skills() {
                 <SkillBar 
                   key={index} 
                   name={skill.name} 
-                  percentage={skill.percentage} 
                 />
               ))}
             </div>
