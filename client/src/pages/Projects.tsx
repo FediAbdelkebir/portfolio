@@ -309,13 +309,13 @@ export default function Projects() {
                     />
                   ) : project.id === 'smart-control-demo' ? (
                     <img 
-                      src={import.meta.env.MODE === 'production' ? `/portfolio/images/projects/smart-control-demo/main.png` : "/images/projects/smart-control-demo/main.png"}
+                      src={import.meta.env.MODE === 'production' ? `/portfolio/images/projects/smart-control-demo/confidential.png` : "/images/projects/smart-control-demo/confidential.png"}
                       alt={project.title}
                       className="w-full h-full object-cover object-top"
                     />
                   ) : project.id === 'smart-control-config' ? (
                     <img 
-                      src={import.meta.env.MODE === 'production' ? `/portfolio/images/projects/smart-control-config/about.png` : "/images/projects/smart-control-config/about.png"}
+                      src={import.meta.env.MODE === 'production' ? `/portfolio/images/projects/smart-control-config/confidential.png` : "/images/projects/smart-control-config/confidential.png"}
                       alt={project.title}
                       className="w-full h-full object-cover object-top"
                     />
