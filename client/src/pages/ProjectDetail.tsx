@@ -371,8 +371,8 @@ const projectsData: Record<string, ProjectDetails> = {
       "Prettier"
     ],
     screenshots: [
-      { url: "/images/projects/smart-control-demo/login.png", caption: "Secure login interface for the KYC Controls Demo" },
-      { url: "/images/projects/smart-control-demo/main.png", caption: "Main dashboard showing document analysis and validation results" }
+      { url: "/images/projects/smart-control-demo/confidential.png", caption: "Secure login interface for the KYC Controls Demo" },
+      { url: "/images/projects/smart-control-demo/confidential.png", caption: "Main dashboard showing document analysis and validation results" }
     ],
     outcome: "The demonstrator allowed stakeholders to quickly grasp the value of the KYC controls engine, leading to increased adoption and clearer communication between technical teams and business departments. The use of modern Angular 18 patterns ensured the application was easy to maintain and extend."
   },
@@ -408,16 +408,16 @@ const projectsData: Record<string, ProjectDetails> = {
       "Bootstrap"
     ],
     screenshots: [
-      { url: "/images/projects/smart-control-config/about.png", caption: "Application introduction showing key features and technical info" },
-      { url: "/images/projects/smart-control-config/list.png", caption: "List of existing KYC configurations with status tracking" },
-      { url: "/images/projects/smart-control-config/create.png", caption: "Wizard for creating a new configuration" },
-      { url: "/images/projects/smart-control-config/editor.png", caption: "Visual editor for document fields and validation actions" },
-      { url: "/images/projects/smart-control-config/form.png", caption: "Action configuration form with parameter validation" },
-      { url: "/images/projects/smart-control-config/import.png", caption: "Configuration import interface from JSON files" },
-      { url: "/images/projects/smart-control-config/json.png", caption: "Live JSON preview of the configuration script" },
-      { url: "/images/projects/smart-control-config/json-file.png", caption: "Detailed view of the exported documentation JSON" },
-      { url: "/images/projects/smart-control-config/view.png", caption: "Documentation viewer for specific validation actions" },
-      { url: "/images/projects/smart-control-config/modify.png", caption: "Interface for modifying existing action documentations" }
+      { url: "/images/projects/smart-control-config/confidential.png", caption: "Application introduction showing key features and technical info" },
+      { url: "/images/projects/smart-control-config/confidential.png", caption: "List of existing KYC configurations with status tracking" },
+      { url: "/images/projects/smart-control-config/confidential.png", caption: "Wizard for creating a new configuration" },
+      { url: "/images/projects/smart-control-config/confidential.png", caption: "Visual editor for document fields and validation actions" },
+      { url: "/images/projects/smart-control-config/confidential.png", caption: "Action configuration form with parameter validation" },
+      { url: "/images/projects/smart-control-config/confidential.png", caption: "Configuration import interface from JSON files" },
+      { url: "/images/projects/smart-control-config/confidential.png", caption: "Live JSON preview of the configuration script" },
+      { url: "/images/projects/smart-control-config/confidential.png", caption: "Detailed view of the exported documentation JSON" },
+      { url: "/images/projects/smart-control-config/confidential.png", caption: "Documentation viewer for specific validation actions" },
+      { url: "/images/projects/smart-control-config/confidential.png", caption: "Interface for modifying existing action documentations" }
     ],
     outcome: "The configurator drastically reduced the time required to onboard new KYC document types, moving from days of manual JSON writing to hours of visual configuration. It also eliminated common syntax errors and improved the reliability of the validation scripts deployed in production."
   }

@@ -93,7 +93,7 @@ const projectsData: Project[] = [
     type: "Fullstack Software Engineer",
     shortDescription: "An advanced application to combat identity fraud using document control and verification.",
     technologies: ["Angular", "TypeScript", "Spring Boot", "RabbitMQ", "Elasticsearch"],
-    thumbnail: "/projects/tessi/thumbnail.jpg"
+    thumbnail: "/images/projects/tessi/thumbnail-tessi.jpg"
   },
   {
     id: "smart-control-demo",
@@ -103,7 +103,7 @@ const projectsData: Project[] = [
     type: "Fullstack Web Development",
     shortDescription: "A KYC controls engine demonstration app for document upload, management, and automated analysis results visualization.",
     technologies: ["Angular 18", "TypeScript", "REST APIs", "Reactive Programming"],
-    thumbnail: "/images/projects/smart-control-demo/main.png"
+    thumbnail: "/images/projects/tessi/thumbnail-tessi.jpg"
   },
   {
     id: "smart-control-config",
@@ -113,7 +113,7 @@ const projectsData: Project[] = [
     type: "Fullstack Web Development",
     shortDescription: "A no-code platform for creating, modifying, and managing KYC control configurations with a visual interface.",
     technologies: ["Angular 18", "TypeScript", "Spring Boot", "JSON Path", "Reactive Forms"],
-    thumbnail: "/images/projects/smart-control-config/about.png"
+    thumbnail: "/images/projects/tessi/thumbnail-tessi.jpg"
   }
 ];
 
