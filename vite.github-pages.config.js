@@ -1,10 +1,10 @@
 // Import the base Vite config
 import baseConfig from './vite.config';
 
-// GitHub Pages configuration
+// GitHub Pages configuration for custom domain
 const githubPagesConfig = {
   ...baseConfig,
-  base: '/portfolio/', // Replace 'portfolio' with your repository name
+  base: '/', // Custom domain uses root path
 };
 
 export default githubPagesConfig;
