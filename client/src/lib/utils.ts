@@ -27,11 +27,9 @@ export function throttle(func: Function, delay: number): (...args: any[]) => voi
   };
 }
 
-// Helper function to get correct path for GitHub Pages
+// Helper function to get correct path
 export function getGitHubPagesPath(path: string): string {
-  return import.meta.env.MODE === 'production' 
-    ? `/portfolio${path}` 
-    : path;
+  return path;
 }
 
 export const jobTitles = [

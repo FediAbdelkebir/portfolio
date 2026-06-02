@@ -254,7 +254,7 @@ export default function Projects() {
           {filteredProjects.map((project: Project, index: number) => (
             <Link 
               key={project.id}
-              to={import.meta.env.MODE === 'production' ? `/portfolio/projects/${project.id}` : `/projects/${project.id}`}
+              to={`/projects/${project.id}`}
               className="block"
             >
               <motion.div
@@ -267,55 +267,55 @@ export default function Projects() {
                 <div className="h-48 bg-dark-200 dark:bg-dark-700 relative overflow-hidden">
                   {project.id === 'workmood' ? (
                     <img 
-                      src={import.meta.env.MODE === 'production' ? `/portfolio/projects/workmood/events-list.jpg` : "/projects/workmood/events-list.jpg"}
+                      src="/projects/workmood/events-list.jpg"
                       alt={project.title}
                       className="w-full h-full object-cover object-top"
                     />
                   ) : project.id === 'ebuild' ? (
                     <img 
-                      src={import.meta.env.MODE === 'production' ? `/portfolio/projects/ebuild/clients.jpg` : "/projects/ebuild/clients.jpg"}
+                      src="/projects/ebuild/clients.jpg"
                       alt={project.title}
                       className="w-full h-full object-cover object-top"
                     />
                   ) : project.id === 'el-khima' ? (
                     <img 
-                      src={import.meta.env.MODE === 'production' ? `/portfolio/projects/el-khima/home.jpg` : "/projects/el-khima/home.jpg"}
+                      src="/projects/el-khima/home.jpg"
                       alt={project.title}
                       className="w-full h-full object-cover object-top"
                     />
                   ) : project.id === 'sports-league' ? (
                     <img 
-                      src={import.meta.env.MODE === 'production' ? `/portfolio/projects/sports-league/homepage.jpg` : "/projects/sports-league/homepage.jpg"}
+                      src="/projects/sports-league/homepage.jpg"
                       alt={project.title}
                       className="w-full h-full object-cover object-top"
                     />
                   ) : project.id === 'interactive-virtuelle' ? (
                     <img 
-                      src={import.meta.env.MODE === 'production' ? `/portfolio/projects/siv/dashboard.jpg` : "/projects/siv/dashboard.jpg"}
+                      src="/projects/siv/dashboard.jpg"
                       alt={project.title}
                       className="w-full h-full object-cover object-top"
                     />
                   ) : project.id === 'national-computer-center' ? (
                     <img 
-                      src={import.meta.env.MODE === 'production' ? `/portfolio/projects/ncc/user-management.jpg` : "/projects/ncc/user-management.jpg"}
+                      src="/projects/ncc/user-management.jpg"
                       alt={project.title}
                       className="w-full h-full object-cover object-top"
                     />
                   ) : project.id === 'neocortex' ? (
                     <img 
-                      src={import.meta.env.MODE === 'production' ? `/portfolio/projects/neocortex/timeline.jpg` : "/projects/neocortex/timeline.jpg"}
+                      src="/projects/neocortex/timeline.jpg"
                       alt={project.title}
                       className="w-full h-full object-cover object-top"
                     />
                   ) : project.id === 'smart-control-demo' ? (
                     <img 
-                      src={import.meta.env.MODE === 'production' ? `/portfolio/images/projects/smart-control-demo/confidential.png` : "/images/projects/smart-control-demo/confidential.png"}
+                      src="/images/projects/smart-control-demo/confidential.png"
                       alt={project.title}
                       className="w-full h-full object-cover object-top"
                     />
                   ) : project.id === 'smart-control-config' ? (
                     <img 
-                      src={import.meta.env.MODE === 'production' ? `/portfolio/images/projects/smart-control-config/confidential.png` : "/images/projects/smart-control-config/confidential.png"}
+                      src="/images/projects/smart-control-config/confidential.png"
                       alt={project.title}
                       className="w-full h-full object-cover object-top"
                     />

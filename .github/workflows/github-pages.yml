@@ -32,72 +32,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Add base path for GitHub Pages
-        run: |
-          # Create a temporary file
-          cat << EOF > temp_vite_config.js
-          import { defineConfig } from "vite";
-          import react from "@vitejs/plugin-react";
-          import path from "path";
-          import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
-
-          // Add base path for GitHub Pages
-          export default defineConfig({
-            plugins: [
-              react(),
-              runtimeErrorOverlay(),
-            ],
-            resolve: {
-              alias: {
-                "@db": path.resolve(import.meta.dirname, "db"),
-                "@": path.resolve(import.meta.dirname, "client", "src"),
-                "@shared": path.resolve(import.meta.dirname, "shared"),
-                "@assets": path.resolve(import.meta.dirname, "attached_assets"),
-              },
-            },
-            root: path.resolve(import.meta.dirname, "client"),
-            build: {
-              outDir: path.resolve(import.meta.dirname, "dist/public"),
-              emptyOutDir: true,
-            },
-            base: "/PortfolioProdigy/",  // Replace with your repository name
-          });
-          EOF
-          mv temp_vite_config.js vite.config.ts
-
-      - name: Add SPA redirect script for GitHub Pages
-        run: |
-          # Create 404.html for SPA routing
-          mkdir -p client/public
-          cat << EOF > client/public/404.html
-          <!DOCTYPE html>
-          <html>
-          <head>
-            <meta charset="utf-8">
-            <title>Redirecting...</title>
-            <script>
-              sessionStorage.redirect = location.href;
-            </script>
-            <meta http-equiv="refresh" content="0;URL='/PortfolioProdigy/'">
-          </head>
-          <body>
-            <h1>Redirecting...</h1>
-            <p>If you are not redirected automatically, click <a href="/PortfolioProdigy/">here</a>.</p>
-          </body>
-          </html>
-          EOF
-
-          # Create redirect script
-          cat > redirect_script.js << EOF
-<script>
-(function() {
-  var redirect = sessionStorage.redirect;
-  delete sessionStorage.redirect;
-  if (redirect && redirect !== location.href) {
-    history.replaceState(null, null, redirect.replace("/PortfolioProdigy/", "/"));
-  }
-})();
-</script>
+      - name: Build
+        run: npm run build
 EOF
 
           # Add redirect handling script to index.html
