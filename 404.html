@@ -12,15 +12,11 @@
       var path = window.location.pathname;
       var isProduction = window.location.hostname.includes('github.io');
       
-      // Only redirect if this is a 404 page on GitHub Pages
-      if (isProduction) {
-        // Check if path starts with the repo name
-        var repoName = '/portfolio'; // Your repository name
-        
-        // Remove repository name from path if it exists
-        if (path.indexOf(repoName) === 0) {
-          path = path.substr(repoName.length);
-        }
+      // For custom domains, we don't need to strip anything
+      // The path is already correct
+      if (!isProduction) {
+        return; // Only handle GitHub Pages
+      }
         
         // Redirect to the root with the pathname in the query string
         window.location.href = repoName + '/?redirect=' + encodeURIComponent(path);
