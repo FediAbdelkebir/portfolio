@@ -6,8 +6,8 @@ export default function Education() {
     {
       title: "Software Architect Engineering",
       organization: "ESPRIT: Private School of Engineering and Technology",
-      period: "2020 - Today",
-      description: "Currently pursuing engineering studies with a focus on Software Architecture.",
+      period: "2020 - 2024",
+      description: "Engineering studies focused on software architecture, systems design, and modern application development.",
     },
     {
       title: "Applied License in Development of Information Systems",

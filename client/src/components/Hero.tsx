@@ -73,7 +73,7 @@ export default function Hero() {
           >
             <div className="flex items-center space-x-3 mb-4">
               <div className="h-1 w-12 bg-primary"></div>
-              <span className="text-primary font-medium">Hello, I'm</span>
+              <span className="text-primary font-medium">Hello, I’m</span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading mb-4 text-dark-800 dark:text-white">
               Fedi Abdelkebir
@@ -82,23 +82,29 @@ export default function Hero() {
               <span>{typedText}</span><span className="typed-cursor">|</span>
             </h2>
             <p className="text-lg text-dark-600 dark:text-dark-300 max-w-2xl mb-8">
-              Fullstack developer with expertise in Angular, Spring Boot, and microservices architecture. 
-              Passionate about building scalable and robust applications to solve complex problems.
+              Fullstack Software Engineer building reliable, user-focused web applications across the stack —
+              from Angular and TypeScript interfaces to Java and Spring Boot services, APIs, and deployment workflows.
             </p>
             <div className="flex flex-wrap gap-4">
               <a 
-                href="#contact" 
-                onClick={handleContactClick}
+                href="/projects" 
                 className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
               >
-                Contact Me
+                View Projects
               </a>
               <a 
-                href="#experience" 
-                onClick={handleExperienceClick}
+                href="/Fedi-Abdelkebir-CV.pdf"
+                download
                 className="px-6 py-3 border border-dark-300 dark:border-dark-700 text-dark-600 dark:text-dark-300 rounded-lg hover:border-primary hover:text-primary transition-colors"
               >
-                View Experience
+                Download CV
+              </a>
+              <a 
+                href="#contact" 
+                onClick={handleContactClick}
+                className="px-6 py-3 border border-dark-300 dark:border-dark-700 text-dark-600 dark:text-dark-300 rounded-lg hover:border-primary hover:text-primary transition-colors"
+              >
+                Contact
               </a>
             </div>
           </motion.div>
@@ -122,7 +128,7 @@ export default function Hero() {
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-56 h-56 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-white dark:border-dark-800 shadow-lg">
                   <img 
-                    src="/profile.png" 
+                    src="/profile.jpg" 
                     alt="Fedi Abdelkebir" 
                     className="w-full h-full object-cover"
                   />

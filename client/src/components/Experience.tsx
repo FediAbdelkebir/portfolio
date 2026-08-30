@@ -6,15 +6,15 @@ export default function Experience() {
     {
       title: "Fullstack Software Engineer",
       organization: "Tessi",
-      period: "FEBRUARY 2023 - Present",
-      description: "As a FullStack Developer, I was responsible for the development of the Smart-Control application to combat identity fraud. Recently, I led the development of the Smart Control Demonstrateur and the Smart Control Configurateur projects.",
+      period: "FEBRUARY 2024 - PRESENT",
+      description: "I contribute to the design and delivery of digital identity and KYC validation workflows, working across the frontend and backend to support complex business rules and operational tooling.",
       bulletPoints: [
-        "Developed using Angular, TypeScript, Spring Boot, and RabbitMQ",
-        "Implemented Elasticsearch for robust document searching and retrieval",
-        "Deployed with Rancher to control the provided documents",
-        "Led the development of Smart Control Demonstrateur and Smart Control Configurateur"
+        "Built and maintained Angular applications for KYC document validation and workflow orchestration",
+        "Worked with Java and Spring Boot services to support backend rules and integrations",
+        "Delivered application features for document management, validation flows, and demo/configuration tooling",
+        "Collaborated closely with stakeholders to translate complex requirements into maintainable user-facing solutions"
       ],
-      skills: ["Angular", "TypeScript", "Spring Boot", "RabbitMQ", "Elasticsearch", "Rancher"]
+      skills: ["Angular", "TypeScript", "Java", "Spring Boot", "REST APIs", "RabbitMQ", "Docker"]
     },
     {
       title: "End of Studies Internship",

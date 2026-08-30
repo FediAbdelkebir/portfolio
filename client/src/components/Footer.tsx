@@ -24,7 +24,7 @@ export default function Footer() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          Software Architect Engineer & Fullstack Developer
+          Fullstack Software Engineer
         </motion.p>
         
         <motion.div 

@@ -118,8 +118,8 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-dark-600 dark:text-dark-300 mb-1">Website</p>
-                  <a href="http://fediabdelkebir.me/" target="_blank" rel="noopener noreferrer" className="text-dark-800 dark:text-white hover:text-primary dark:hover:text-primary transition-colors">
-                    fediabdelkebir.me
+                  <a href="https://fediabdelkebir.com" target="_blank" rel="noopener noreferrer" className="text-dark-800 dark:text-white hover:text-primary dark:hover:text-primary transition-colors">
+                    fediabdelkebir.com
                   </a>
                 </div>
               </div>

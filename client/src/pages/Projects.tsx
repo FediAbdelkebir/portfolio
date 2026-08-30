@@ -89,7 +89,7 @@ const projectsData: Project[] = [
     id: "tessi",
     title: "Smart-Control Application",
     company: "Tessi",
-    period: "FEBRUARY 2023 - Present",
+    period: "FEBRUARY 2024 - Present",
     type: "Fullstack Software Engineer",
     shortDescription: "An advanced application to combat identity fraud using document control and verification.",
     technologies: ["Angular", "TypeScript", "Spring Boot", "RabbitMQ", "Elasticsearch"],

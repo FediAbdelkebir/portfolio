@@ -10,14 +10,18 @@ export function isInViewport(element: HTMLElement): boolean {
   return (
     rect.top >= 0 &&
     rect.left >= 0 &&
-    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.bottom <=
+      (window.innerHeight || document.documentElement.clientHeight) &&
     rect.right <= (window.innerWidth || document.documentElement.clientWidth)
   );
 }
 
-export function throttle(func: Function, delay: number): (...args: any[]) => void {
+export function throttle(
+  func: Function,
+  delay: number,
+): (...args: any[]) => void {
   let inThrottle: boolean;
-  return function(this: any, ...args: any[]) {
+  return function (this: any, ...args: any[]) {
     const context = this;
     if (!inThrottle) {
       func.apply(context, args);
@@ -33,8 +37,8 @@ export function getGitHubPagesPath(path: string): string {
 }
 
 export const jobTitles = [
-  'Software Architect Engineer',
-  'Fullstack Developer',
-  'Angular Specialist',
-  'Spring Boot Expert'
+  "Fullstack Software Engineer",
+  "Angular & Java Developer",
+  "Product-Focused Engineer",
+  "Backend & Frontend Builder",
 ];

@@ -35,7 +35,7 @@ export default function About() {
           <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4 text-dark-800 dark:text-white">About Me</h2>
           <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
           <p className="text-lg text-dark-600 dark:text-dark-300">
-            I'm a passionate Software Architect Engineer with expertise in designing and implementing scalable applications.
+            I’m a Fullstack Software Engineer focused on building practical, maintainable applications that connect product thinking with solid engineering execution.
           </p>
         </motion.div>
 
@@ -46,7 +46,6 @@ export default function About() {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {/* Card 1 */}
           <motion.div 
             className="bg-white dark:bg-dark-800 rounded-xl shadow-md p-6 transform hover:-translate-y-1 transition-all duration-300"
             variants={itemVariants}
@@ -54,13 +53,12 @@ export default function About() {
             <div className="text-3xl text-primary mb-4">
               <i className="fas fa-code"></i>
             </div>
-            <h3 className="text-xl font-bold mb-2 text-dark-800 dark:text-white">Fullstack Development</h3>
+            <h3 className="text-xl font-bold mb-2 text-dark-800 dark:text-white">Product Engineering</h3>
             <p className="text-dark-600 dark:text-dark-300">
-              Experienced in building end-to-end applications using modern frameworks like Angular and Spring Boot. Proficient in both frontend and backend technologies.
+              I build end-to-end web products with a strong focus on user experience, maintainability, and business value across frontend and backend layers.
             </p>
           </motion.div>
 
-          {/* Card 2 */}
           <motion.div 
             className="bg-white dark:bg-dark-800 rounded-xl shadow-md p-6 transform hover:-translate-y-1 transition-all duration-300"
             variants={itemVariants}
@@ -68,13 +66,12 @@ export default function About() {
             <div className="text-3xl text-primary mb-4">
               <i className="fas fa-sitemap"></i>
             </div>
-            <h3 className="text-xl font-bold mb-2 text-dark-800 dark:text-white">Software Architecture</h3>
+            <h3 className="text-xl font-bold mb-2 text-dark-800 dark:text-white">System Design</h3>
             <p className="text-dark-600 dark:text-dark-300">
-              Skilled in designing robust microservice architectures and implementing scalable solutions using technologies like RabbitMQ, Kafka, and Docker.
+              My work includes API design, service integration, and scalable application architecture using Java, Spring Boot, and message-driven systems.
             </p>
           </motion.div>
 
-          {/* Card 3 */}
           <motion.div 
             className="bg-white dark:bg-dark-800 rounded-xl shadow-md p-6 transform hover:-translate-y-1 transition-all duration-300"
             variants={itemVariants}
@@ -82,9 +79,9 @@ export default function About() {
             <div className="text-3xl text-primary mb-4">
               <i className="fas fa-server"></i>
             </div>
-            <h3 className="text-xl font-bold mb-2 text-dark-800 dark:text-white">DevOps Practices</h3>
+            <h3 className="text-xl font-bold mb-2 text-dark-800 dark:text-white">Delivery & Reliability</h3>
             <p className="text-dark-600 dark:text-dark-300">
-              Experience with CI/CD pipelines, container orchestration, and cloud deployment using tools like Docker, Kubernetes, and various DevOps technologies.
+              I care about clean implementation, deployment readiness, and resilient integrations with tools such as Docker, CI/CD, and containerized services.
             </p>
           </motion.div>
         </motion.div>
